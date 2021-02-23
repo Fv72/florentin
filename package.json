@@ -17,12 +17,15 @@
   },
   "homepage": "https://github.com/Fv72/florentin#readme",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "connect": "^3.7.0",
     "connect-mongo": "^3.2.0",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "mongoose": "^5.11.16",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "stack": "^0.1.0"
   }
 }
