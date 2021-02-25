@@ -1,0 +1,21 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Mes réalisations</h2>
+        </div>
+
+        {{#each dbRealisation }}
+
+        <div class="card col-md-6 col-xl-4 col-sm-12">
+            <a href="./Ressources/html/pageID.html">
+                <img src="./Ressources/Images/Imagetest.jpg" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+                <p class="card-text">{{ title }}</p>
+            </div>
+        </div>
+
+        {{/each }}
+
+    </div>
+</section>

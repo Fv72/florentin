@@ -1,16 +1,43 @@
 const express = require('express')
-const exphbs = require('express-handlebars')
-const mongoose = require('mongoose')
-const Handlebars = require("handlebars")
-const bodyParser = require('body-parser')
-const port = 4000
 const app = express()
+const bodyParser = require('body-parser')
+const hbs = require('express-handlebars')
+const mongoose = require('mongoose')
+const port = 4000
 
+// Module .env
+require('dotenv').config()
+
+// Connexio a notre DB
+mongoose
+    .connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(res => console.log('MongoDB: connection success !!'))
+    .catch(err => console.log(err))
+
+// Handlebars
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs({
+    extname: 'hbs',
+    defaultLayout: 'main'
+}));
 
 // EXPRESS STATIQUE //
-
 app.use(express.static("public"))
 
+// Body Parser qui nous permet de parser des data d'une req a une autre
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+// Router
+const ROUTER = require('./api/router')
+app.use('/', ROUTER)
+
+// Lancement de notre application (app)
 app.listen(port, function() {
     console.log(`Ecoute le port ${port}, lancé à : ${new Date().toLocaleString()}`);
 })

@@ -1,32 +1,27 @@
 {
-  "name": "florentin",
-  "version": "1.0.0",
-  "description": "``` sass --watch Ressources/css/sass/index.sass:Ressources/css/style.css ```",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Fv72/florentin.git"
-  },
-  "author": "florentin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Fv72/florentin/issues"
-  },
-  "homepage": "https://github.com/Fv72/florentin#readme",
-  "dependencies": {
-    "@handlebars/allow-prototype-access": "^1.0.3",
-    "bcrypt": "^5.0.0",
-    "body-parser": "^1.19.0",
-    "connect": "^3.7.0",
-    "connect-mongo": "^3.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.2.0",
-    "express-session": "^1.17.1",
-    "mongoose": "^5.11.16",
-    "nodemon": "^2.0.7",
-    "stack": "^0.1.0"
-  }
+    "name": "florentin",
+    "version": "1.0.0",
+    "description": "``` sass --watch Ressources/css/sass/index.sass:Ressources/css/style.css ```",
+    "main": "app.js",
+    "scripts": {
+        "dev": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Fv72/florentin.git"
+    },
+    "author": "florentin",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Fv72/florentin/issues"
+    },
+    "homepage": "https://github.com/Fv72/florentin#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.2.0",
+        "mongoose": "^5.11.16"
+    }
 }
