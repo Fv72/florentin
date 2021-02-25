@@ -20,7 +20,11 @@ module.exports = {
                     // })
             })
     },
+
+    // GENERE UN ID //
     getID: (req, res) => {
+
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE PAR ID //
         Realisation
             .findById(req.params.id)
             .exec((err, data) => {
@@ -32,31 +36,63 @@ module.exports = {
                 })
             })
     },
+
+    // LE CREATE NOUS PERMET DE CREER UN NOUVEL ARTICLE //
     create: (req, res) => {
+
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE //
         Realisation
             .create({
+                // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
                 title: req.body.title
+
+                // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             }, (err, dataPrim) => {
                 if (err) console.log(err)
 
+                // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
                 res.redirect('/realisation')
             })
     },
+
+    // EDITONE NOUS PERMET D'EDITER UN ARTICLE QU'ON A CREE ET DE LE MODIFIER // 
     editOne: (req, res) => {
+
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
         Realisation
+
+        //  RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
-                title: req.body.title
-            }, (err, data) => {
-                if (err) console.log(err)
-                res.redirect('/realisation')
-            })
+
+            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
+            title: req.body.title
+        }, (err, data) => {
+
+            // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
+            if (err) console.log(err)
+
+            // REDIRIGE SUITE A L'EDIT  DE L'ARTICLE A LA PAGE SUIVANTE : 
+            res.redirect('/realisation')
+        })
     },
+
+    // DELETEONE PERMET DE SUPPRIMER UN ARTICLE //
     deleteOne: (req, res) => {
+
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER L'ARTICLE //
         Realisation
+
+        // RECHERCHE PAR ID ET SUPPRIME //
             .findByIdAndDelete(req.params.id)
-            .exec((err, data) => {
-                if (err) console.log(err)
-                res.redirect('/realisation')
-            })
+
+        // EXECUTE LA COMMANDE DELETE //
+        .exec((err, data) => {
+
+            // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
+            if (err) console.log(err)
+
+            // REDIRIGE SUITE A SUPPRESSION DE L'ARTICLE A LA PAGE SUIVANTE :
+            res.redirect('/realisation')
+        })
     }
 }
