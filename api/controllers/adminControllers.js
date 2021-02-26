@@ -1,26 +1,26 @@
 /*
  * Import Module
  ****************/
-const Realisation = require('../models/Realisation')
+const admin = require('../models/admin')
 
 module.exports = {
 
     // RECUPERE LES REALISATIONS //
-    recuperationDesRealisations: (req, res) => {
+    admin: (req, res) => {
 
-        Realisation
+        admin
             .find()
             .lean()
             .exec((err, data) => {
                 if (err) console.log(err)
-                    // res.render('home', {
-                    //         success: 'Success Get !',
-                    //         dbRealisation: data
-                    //     })
-                res.json({
-                    success: 'Success Get !',
-                    dbRealisation: data
-                })
+                res.render('home', {
+                        success: 'Success Get !',
+                        dbComment: data
+                    })
+                    // res.json({
+                    //     success: 'Success Get !',
+                    //     dbRealisation: data
+                    // })
             })
     },
 
@@ -28,24 +28,21 @@ module.exports = {
     getID: (req, res) => {
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE PAR ID //
-        Realisation
+        admin
             .findById(req.params.id)
-            .populate('comment')
             .exec((err, data) => {
                 if (err) console.log(err)
 
                 res.json({
                     success: 'Success get ID !',
-                    dbRealisation: data
+                    dbComment: data
                 })
             })
     },
 
-    // LE CREATE NOUS PERMET DE CREER UN NOUVEL ARTICLE //
-    create: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE //
-        Realisation
+    create: (req, res) => {
+        admin
             .create({
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
                 title: req.body.title
@@ -55,7 +52,7 @@ module.exports = {
                 if (err) console.log(err)
 
                 // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
-                res.redirect('/realisation')
+                res.redirect('realisation/:id')
             })
     },
 
@@ -63,7 +60,7 @@ module.exports = {
     editOne: (req, res) => {
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
-        Realisation
+        admin
 
         //  RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
@@ -76,7 +73,7 @@ module.exports = {
             if (err) console.log(err)
 
             // REDIRIGE SUITE A L'EDIT  DE L'ARTICLE A LA PAGE SUIVANTE : 
-            res.redirect('/realisation')
+            res.redirect('realisation/:id')
         })
     },
 
@@ -84,7 +81,7 @@ module.exports = {
     deleteOne: (req, res) => {
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER L'ARTICLE //
-        Realisation
+        admin
 
         // RECHERCHE PAR ID ET SUPPRIME //
             .findByIdAndDelete(req.params.id)

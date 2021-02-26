@@ -1,14 +1,15 @@
 /*
  * Import Module
  ****************/
-const comment = require('../models/comment')
+const Comment = require('../models/comment')
+const Realisation = require('../models/Realisation')
 
 module.exports = {
 
     // RECUPERE LES REALISATIONS //
     comment: (req, res) => {
 
-        comment
+        Comment
             .find()
             .lean()
             .exec((err, data) => {
@@ -41,19 +42,22 @@ module.exports = {
     },
 
 
-    create: (req, res) => {
-        Comment
-            .create({
-                // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
-                title: req.body.title
+    create: async(req, res) => {
+        const realisation = await Realisation.findById(req.params.id)
 
-                // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
-            }, (err, dataPrim) => {
-                if (err) console.log(err)
+        const comment = new Comment({
+            title: req.body.title,
+            author: req.body.author,
+            refID: realisation._id
+        })
 
-                // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
-                res.redirect('realisation/:id')
-            })
+        realisation.comment.push(comment._id)
+
+        realisation.save()
+
+        comment.save()
+
+        res.redirect(`/realisation/${realisation._id}`)
     },
 
     // EDITONE NOUS PERMET D'EDITER UN ARTICLE QU'ON A CREE ET DE LE MODIFIER // 
