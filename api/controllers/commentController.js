@@ -1,21 +1,21 @@
 /*
  * Import Module
  ****************/
-const Realisation = require('../models/Realisation')
+const comment = require('../models/comment')
 
 module.exports = {
 
     // RECUPERE LES REALISATIONS //
-    recuperationDesRealisations: (req, res) => {
+    comment: (req, res) => {
 
-        Realisation
+        comment
             .find()
             .lean()
             .exec((err, data) => {
                 if (err) console.log(err)
                 res.render('home', {
                         success: 'Success Get !',
-                        dbRealisation: data
+                        dbComment: data
                     })
                     // res.json({
                     //     success: 'Success Get !',
@@ -35,16 +35,14 @@ module.exports = {
 
                 res.json({
                     success: 'Success get ID !',
-                    dbRealisation: data
+                    dbComment: data
                 })
             })
     },
 
-    // LE CREATE NOUS PERMET DE CREER UN NOUVEL ARTICLE //
-    create: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE //
-        Realisation
+    create: (req, res) => {
+        Comment
             .create({
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
                 title: req.body.title
@@ -54,7 +52,7 @@ module.exports = {
                 if (err) console.log(err)
 
                 // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
-                res.redirect('/realisation')
+                res.redirect('realisation/:id')
             })
     },
 
@@ -75,7 +73,7 @@ module.exports = {
             if (err) console.log(err)
 
             // REDIRIGE SUITE A L'EDIT  DE L'ARTICLE A LA PAGE SUIVANTE : 
-            res.redirect('/realisation')
+            res.redirect('realisation/:id')
         })
     },
 
