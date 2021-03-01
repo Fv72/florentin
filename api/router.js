@@ -12,6 +12,8 @@ const homeController = require('./controllers/homeController'),
     realisationController = require('./controllers/realisationController'),
     commentController = require('./controllers/commentController'),
     adminController = require('./controllers/adminControllers');
+const messageController = require('./controllers/messageController');
+
 
 /*
  * Router
@@ -32,6 +34,14 @@ router.route('/realisation/:id')
 
 router.route('/comment/:id')
     .post(commentController.create)
+
+router.route('/message')
+    .post(messageController.create)
+
+router.route('/messageId/:id')
+    .get(messageController.getID)
+    .put(messageController.editOne)
+    .delete(messageController.deleteOne)
 
 // router.route('/user')
 //     .get(userControllers.get)

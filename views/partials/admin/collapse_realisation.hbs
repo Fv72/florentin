@@ -1,4 +1,5 @@
 <p>collapse realisation</p>
+
 <div class="card">
     <div class="card-header" id="headingOne">
         <h2 class="mb-0">
@@ -9,18 +10,21 @@
         </h2>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
 
             {{!-- Create --}}
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreateRealisation"
                 data-whatever="@mdo">Ajouter une réalisation</button>
 
+            {{!-- Modal de creation --}}
+            {{> modals/modalCreateRealisation }}
+
             <!-- Table Realisation -->
             <table class="table table-sm table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">N°réalisation</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
                         <th scope="col">Handle</th>
@@ -28,22 +32,31 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    {{#each dbRealisation }}
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td> {{ _id }} </td>
+                        <td>{{ title }}</td>
+                        <td>{{ content }}</td>
                         <td>
                             {{!-- Edit --}}
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalEditRealisation" data-whatever="@mdo">Editer réalisation</button>
+                                data-target="#modalEditRealisation{{ _id }}" data-whatever="@mdo">Editer
+                                réalisation</button>
                             {{!-- Delete --}}
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalDeleteRealisation" data-whatever="@mdo">Supprimer
+                                data-target="#modalDeleteRealisation{{ _id }}" data-whatever="@mdo">Supprimer
                                 réalisation</button>
                         </td>
                     </tr>
+
+                    {{!-- Modal d'édition --}}
+                    {{> modals/modalEditRealisation }}
+
+                    {{!-- Modal de suppression --}}
+                    {{> modals/modalDeleteRealisation }}
+
+                    {{/each }}
 
                 </tbody>
             </table>
@@ -52,9 +65,3 @@
         </div>
     </div>
 </div>
-
-{{> modals/modalCreateRealisation }}
-
-{{> modals/modalEditRealisation }}
-
-{{> modals/modalDeleteRealisation }}

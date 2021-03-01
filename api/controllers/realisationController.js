@@ -44,39 +44,44 @@ module.exports = {
     // LE CREATE NOUS PERMET DE CREER UN NOUVEL ARTICLE //
     create: (req, res) => {
 
+        console.log('Controller create Realisation')
+
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE //
         Realisation
             .create({
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
-                title: req.body.title
+                title: req.body.title,
+                content: req.body.content
 
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             }, (err, dataPrim) => {
                 if (err) console.log(err)
 
                 // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
-                res.redirect('/realisation')
+                res.redirect('/admin')
             })
     },
 
     // EDITONE NOUS PERMET D'EDITER UN ARTICLE QU'ON A CREE ET DE LE MODIFIER // 
     editOne: (req, res) => {
+        console.log('Controller Edit Realisation', req.params.id)
+        console.log(req.body)
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
         Realisation
-
         //  RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
 
             // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
-            title: req.body.title
+            title: req.body.title,
+            content: req.body.content
         }, (err, data) => {
 
             // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
             // REDIRIGE SUITE A L'EDIT  DE L'ARTICLE A LA PAGE SUIVANTE : 
-            res.redirect('/realisation')
+            res.redirect('/admin')
         })
     },
 
@@ -96,7 +101,7 @@ module.exports = {
             if (err) console.log(err)
 
             // REDIRIGE SUITE A SUPPRESSION DE L'ARTICLE A LA PAGE SUIVANTE :
-            res.redirect('/realisation')
+            res.redirect('/admin')
         })
     }
 }

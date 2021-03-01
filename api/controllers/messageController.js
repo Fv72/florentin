@@ -1,11 +1,11 @@
 /*
  * Import Module
  ****************/
-const comment = require('../models/message')
+const message = require('../models/message')
 
 module.exports = {
 
-    // RECUPERE LES REALISATIONS //
+    // RECUPERE LES MESSAGES //
     message: (req, res) => {
 
         message
@@ -13,14 +13,14 @@ module.exports = {
             .lean()
             .exec((err, data) => {
                 if (err) console.log(err)
-                res.render('home', {
-                        success: 'Success Get !',
-                        dbComment: data
-                    })
-                    // res.json({
-                    //     success: 'Success Get !',
-                    //     dbRealisation: data
-                    // })
+                    // res.render('home', {
+                    //         success: 'Success Get !',
+                    //         dbComment: data
+                    //     })
+                res.json({
+                    success: 'Success Get !',
+                    dbmessage: data
+                })
             })
     },
 
@@ -45,7 +45,8 @@ module.exports = {
         Comment
             .create({
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
-                title: req.body.title
+                title: req.body.title,
+                content: req.body.content
 
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             }, (err, dataPrim) => {
@@ -66,34 +67,34 @@ module.exports = {
             .findByIdAndUpdate(req.params.id, {
 
             // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
-            title: req.body.title
+            title: req.body.title,
+            content: req.body.content,
         }, (err, data) => {
 
             // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
-            // REDIRIGE SUITE A L'EDIT  DE L'ARTICLE A LA PAGE SUIVANTE : 
+            // REDIRIGE SUITE A L'EDIT DU MESSAGE A LA PAGE SUIVANTE : 
             res.redirect('/')
         })
     },
 
-    // DELETEONE PERMET DE SUPPRIMER UN ARTICLE //
+    // DELETEONE PERMET DE SUPPRIMER UN MESSAGE //
     deleteOne: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER L'ARTICLE //
+        console.log(req.params)
+
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER LE MESSAGE //      // RECHERCHE PAR ID ET SUPPRIME //
         message
+            .deleteOne({ _id: req.params.id }), (err, data) => {
 
-        // RECHERCHE PAR ID ET SUPPRIME //
-            .findByIdAndDelete(req.params.id)
+                if (!err) {
 
-        // EXECUTE LA COMMANDE DELETE //
-        .exec((err, data) => {
+                    res.redirect('/admin')
 
-            // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
-            if (err) console.log(err)
+                }
+            }
 
-            // REDIRIGE SUITE A SUPPRESSION DE L'ARTICLE A LA PAGE SUIVANTE :
-            res.redirect('/')
-        })
+
     }
 }

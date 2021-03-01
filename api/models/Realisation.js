@@ -13,6 +13,7 @@
  const RealisationSchema = new mongoose.Schema({
      // Première variable (basique)
      title: String,
+     content: String,
      comment: [{
          type: mongoose.Schema.Types.ObjectId,
          ref: 'Comment'

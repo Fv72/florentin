@@ -3,16 +3,21 @@ const app = express()
 const bodyParser = require('body-parser')
 const hbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 const port = 4000
 
 // Module .env
 require('dotenv').config()
 
+// Method Override
+app.use(methodOverride('_method'))
+
 // Connexio a notre DB
 mongoose
     .connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
     })
     .then(res => console.log('MongoDB: connection success !!'))
     .catch(err => console.log(err))

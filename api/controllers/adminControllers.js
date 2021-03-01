@@ -2,13 +2,22 @@
  * Import Module
  ****************/
 const admin = require('../models/admin')
+const Realisation = require('../models/Realisation')
+const Message = require('../models/message')
 
 module.exports = {
 
-    get: (req, res) => {
+    get: async(req, res) => {
+
+        const dbRealisation = await Realisation.find().lean()
+        const dbMessage = await Message.find().lean()
+
         res.render('admin', {
+            dbRealisation: dbRealisation,
+            dbMessage: dbMessage,
             layout: 'adminLayout'
         })
+
     },
 
     // RECUPERE LES REALISATIONS //
