@@ -1,0 +1,60 @@
+<p>collapse realisation</p>
+<div class="card">
+    <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Réalisations
+            </button>
+        </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+
+            {{!-- Create --}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreateRealisation"
+                data-whatever="@mdo">Ajouter une réalisation</button>
+
+            <!-- Table Realisation -->
+            <table class="table table-sm table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            {{!-- Edit --}}
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalEditRealisation" data-whatever="@mdo">Editer réalisation</button>
+                            {{!-- Delete --}}
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalDeleteRealisation" data-whatever="@mdo">Supprimer
+                                réalisation</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- / Table Realisation -->
+
+        </div>
+    </div>
+</div>
+
+{{> modals/modalCreateRealisation }}
+
+{{> modals/modalEditRealisation }}
+
+{{> modals/modalDeleteRealisation }}

@@ -4,8 +4,8 @@
     "description": "``` sass --watch Ressources/css/sass/index.sass:Ressources/css/style.css ```",
     "main": "app.js",
     "scripts": {
-        "dev": "nodemon server.js",
-        "start": "node server.js"
+        "dev": "nodemon app.js",
+        "start": "node app.js"
     },
     "repository": {
         "type": "git",

@@ -10,7 +10,8 @@ const express = require('express'),
  *************/
 const homeController = require('./controllers/homeController'),
     realisationController = require('./controllers/realisationController'),
-    commentController = require('./controllers/commentController')
+    commentController = require('./controllers/commentController'),
+    adminController = require('./controllers/adminControllers');
 
 /*
  * Router
@@ -52,8 +53,8 @@ router.route('/comment/:id')
 //     .put(messageControllers.put)
 //     .deleteOne(messageControllers.deleteOne)
 
-// router.route('/admin')
-//    .get(adminControllers.get) 
+router.route('/admin')
+    .get(adminController.get)
 
 
 

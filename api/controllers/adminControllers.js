@@ -5,6 +5,12 @@ const admin = require('../models/admin')
 
 module.exports = {
 
+    get: (req, res) => {
+        res.render('admin', {
+            layout: 'adminLayout'
+        })
+    },
+
     // RECUPERE LES REALISATIONS //
     admin: (req, res) => {
 
