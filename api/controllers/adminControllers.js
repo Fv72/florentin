@@ -1,7 +1,6 @@
 /*
  * Import Module
  ****************/
-const admin = require('../models/admin')
 const Realisation = require('../models/Realisation')
 const Message = require('../models/message')
 
@@ -21,23 +20,23 @@ module.exports = {
     },
 
     // RECUPERE LES REALISATIONS //
-    admin: (req, res) => {
+    // admin: (req, res) => {
 
-        admin
-            .find()
-            .lean()
-            .exec((err, data) => {
-                if (err) console.log(err)
-                res.render('home', {
-                        success: 'Success Get !',
-                        dbComment: data
-                    })
-                    // res.json({
-                    //     success: 'Success Get !',
-                    //     dbRealisation: data
-                    // })
-            })
-    },
+    //     admin
+    //         .find()
+    //         .lean()
+    //         .exec((err, data) => {
+    //             if (err) console.log(err)
+    //             res.render('home', {
+    //                     success: 'Success Get !',
+    //                     dbComment: data
+    //                 })
+    //                 // res.json({
+    //                 //     success: 'Success Get !',
+    //                 //     dbRealisation: data
+    //                 // })
+    //         })
+    // },
 
     // GENERE UN ID //
     getID: (req, res) => {
