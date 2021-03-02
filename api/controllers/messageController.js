@@ -1,14 +1,14 @@
 /*
  * Import Module
  ****************/
-const message = require('../models/message')
+const Message = require('../models/message')
 
 module.exports = {
 
     // RECUPERE LES MESSAGES //
     message: (req, res) => {
 
-        message
+        Message
             .find()
             .lean()
             .exec((err, data) => {
@@ -35,14 +35,15 @@ module.exports = {
 
                 res.json({
                     success: 'Success get ID !',
-                    dbmessage: data
+                    dbmessage: datamessage
                 })
             })
     },
 
 
     create: (req, res) => {
-        Comment
+        console.log(req.body)
+        Message
             .create({
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
                 title: req.body.title,
@@ -53,7 +54,7 @@ module.exports = {
                 if (err) console.log(err)
 
                 // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
-                res.redirect('realisation/:id')
+                res.redirect('/admin')
             })
     },
 
@@ -61,7 +62,7 @@ module.exports = {
     editOne: (req, res) => {
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
-        message
+        Message
 
         //  RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
@@ -82,18 +83,16 @@ module.exports = {
     // DELETEONE PERMET DE SUPPRIMER UN MESSAGE //
     deleteOne: (req, res) => {
 
-        console.log(req.params)
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER LE MESSAGE //      
+        Message
+        // RECHERCHE PAR ID ET SUPPRIME //
+            .deleteOne({ _id: req.params.id }, (err) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER LE MESSAGE //      // RECHERCHE PAR ID ET SUPPRIME //
-        message
-            .deleteOne({ _id: req.params.id }), (err, data) => {
+            if (err) res.send(err)
 
-                if (!err) {
+            res.redirect('/admin')
 
-                    res.redirect('/admin')
-
-                }
-            }
+        })
 
 
     }

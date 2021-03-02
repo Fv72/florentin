@@ -40,7 +40,6 @@ router.route('/message')
 
 router.route('/messageId/:id')
     .get(messageController.getID)
-    .put(messageController.editOne)
     .delete(messageController.deleteOne)
 
 // router.route('/user')
@@ -73,5 +72,5 @@ router.route('/admin')
  */
 
 
-// on export router pour le récupérer dans ../server.js
+// on exporte router pour le récupérer dans ../server.js
 module.exports = router;

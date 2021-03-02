@@ -5,47 +5,56 @@
         <h2 class="mb-0">
             <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                 data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Message
+                Messages
             </button>
         </h2>
     </div>
 
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
         <div class="card-body">
-            {{> modals/modalCreateMessage }}
+
             {{!-- Create --}}
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreateMessage"
                 data-whatever="@mdo">Envoyer un message</button>
-
+            {{!-- Modal création --}}
+            {{> modals/modalCreateMessage }}
             <!-- Table Message  -->
             <table class="table table-sm table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Message</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each dbMessage}}
                     <tr>
-                        <th scope="row">{{ this.title }}</th>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
+                        <th scope="row">{{ number }}</th>
+                        <th scope="row">{{ name }}</th>
+                        <th scope="row">{{ first.name }}</th>
+                        <th scope="row">{{ object }}</th>
+                        <th scope="row">{{ content }}</th>
                         <td>
-                            {{!-- Edit --}}
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalMessageRealisation" data-whatever="@mdo">Répondre au message</button>
+                            {{!-- Reponse --}}
+
+                            <button type="submit" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalResponseMessage_{{this._id}}" data-whatever="@mdo">Répondre au
+                                message</button>
                             {{!-- Delete --}}
-                            {{> modals/modalDeleteMessage}}
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+
+                            <button type="submit" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalDeleteMessage_{{this._id}}" data-whatever="@mdo">Supprimer le
                                 message</button>
                         </td>
                     </tr>
+
+                    {{> modals/modalResponseMessage}}
+                    {{> modals/modalDeleteMessage}}
+
                     {{/each}}
                 </tbody>
             </table>

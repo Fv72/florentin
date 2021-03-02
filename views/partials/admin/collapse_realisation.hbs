@@ -24,10 +24,10 @@
             <table class="table table-sm table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">N°réalisation</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Contenu</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -40,11 +40,11 @@
                         <td>{{ content }}</td>
                         <td>
                             {{!-- Edit --}}
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="submit" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalEditRealisation{{ _id }}" data-whatever="@mdo">Editer
                                 réalisation</button>
                             {{!-- Delete --}}
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="submit" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalDeleteRealisation{{ _id }}" data-whatever="@mdo">Supprimer
                                 réalisation</button>
                         </td>
