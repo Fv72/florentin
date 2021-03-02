@@ -11,8 +11,9 @@ const express = require('express'),
 const homeController = require('./controllers/homeController'),
     realisationController = require('./controllers/realisationController'),
     commentController = require('./controllers/commentController'),
-    adminController = require('./controllers/adminControllers');
-const messageController = require('./controllers/messageController');
+    adminController = require('./controllers/adminControllers'),
+    messageController = require('./controllers/messageController'),
+    contactController = require('./controllers/contactController')
 
 
 /*
@@ -38,9 +39,13 @@ router.route('/comment/:id')
 router.route('/message')
     .post(messageController.create)
 
+
 router.route('/messageId/:id')
     .get(messageController.getID)
     .delete(messageController.deleteOne)
+
+router.route('/contact')
+    .post(contactController.post)
 
 // router.route('/user')
 //     .get(userControllers.get)

@@ -23,6 +23,7 @@
                 <thead>
                     <tr>
                         <th scope="col">N°</th>
+                        <th scope="col">Mail</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
                         <th scope="col">Objet</th>
@@ -34,20 +35,21 @@
                     {{#each dbMessage}}
                     <tr>
                         <th scope="row">{{ number }}</th>
-                        <th scope="row">{{ name }}</th>
-                        <th scope="row">{{ first.name }}</th>
-                        <th scope="row">{{ object }}</th>
+                        <th scope="row">{{ mail }}</th>
+                        <th scope="row">{{ lastname }}</th>
+                        <th scope="row">{{ firstname }}</th>
+                        <th scope="row">{{ objet }}</th>
                         <th scope="row">{{ content }}</th>
                         <td>
                             {{!-- Reponse --}}
 
-                            <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalResponseMessage_{{this._id}}" data-whatever="@mdo">Répondre au
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalResponseMessage_{{this._id}}">Répondre au
                                 message</button>
                             {{!-- Delete --}}
 
                             <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalDeleteMessage_{{this._id}}" data-whatever="@mdo">Supprimer le
+                                data-target="#modalDeleteMessage_{{this._id}}">Supprimer le
                                 message</button>
                         </td>
                     </tr>

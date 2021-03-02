@@ -27,8 +27,8 @@ module.exports = {
     // GENERE UN ID //
     getID: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE PAR ID //
-        message
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LE MESSAGE PAR ID //
+        Message
             .findById(req.params.id)
             .exec((err, data) => {
                 if (err) console.log(err)
@@ -45,38 +45,48 @@ module.exports = {
         console.log(req.body)
         Message
             .create({
-                // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
+                // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LE MESSAGE  //
+                number: req.body.number,
+                mail: req.body.mail,
+                destinataire: req.body.destinataire,
                 title: req.body.title,
-                content: req.body.content
+                objet: req.body.objet,
+                content: req.body.content,
+
 
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             }, (err, dataPrim) => {
                 if (err) console.log(err)
 
-                // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
+                // RENVOIE SUITE A CREATION DU MESSAGE A LA PAGE SUIVANTE : 
                 res.redirect('/admin')
             })
     },
 
-    // EDITONE NOUS PERMET D'EDITER UN ARTICLE QU'ON A CREE ET DE LE MODIFIER // 
+    // EDITONE NOUS PERMET D'EDITER UN MESSAGE QU'ON A CREE ET DE LE MODIFIER // 
     editOne: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LE MESSAGE //
         Message
 
         //  RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
 
-            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
+            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LE MESSAGE //
+            number: req.body.number,
+            mail: req.body.mail,
+            destinataire: req.body.destinataire,
             title: req.body.title,
+            objet: req.body.objet,
             content: req.body.content,
+
         }, (err, data) => {
 
             // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
             // REDIRIGE SUITE A L'EDIT DU MESSAGE A LA PAGE SUIVANTE : 
-            res.redirect('/')
+            res.redirect('/admin')
         })
     },
 

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalResponseMessage{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="modalResponseMessage_{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/message" method="GET">
                         <div class="form-group">
                             <label for="destinataire-name" class="col-form-label">Destinataire</label>
                             <input type="text" class="form-control" id="destinataire-name">
@@ -30,8 +30,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Editer</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Répondre</button>
                 </div>
             </form>
         </div>

@@ -64,8 +64,7 @@ module.exports = {
 
     // EDITONE NOUS PERMET D'EDITER UN ARTICLE QU'ON A CREE ET DE LE MODIFIER // 
     editOne: (req, res) => {
-        console.log('Controller Edit Realisation', req.params.id)
-        console.log(req.body)
+
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
         Realisation

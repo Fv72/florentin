@@ -13,8 +13,14 @@
  const messageSchema = new mongoose.Schema({
 
      // Première variable (basique)
+     destinataire: String,
      title: String,
-     content: String
+     objet: String,
+     content: String,
+     lastname: String,
+     firstname: String,
+     mail: String,
+
  })
 
  // Et l'on export notre model grace à la passerelle Mongoose
