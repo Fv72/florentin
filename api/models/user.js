@@ -15,7 +15,7 @@
      firstname: String,
      gender: {
          type: String,
-         default: 'Non préciser'
+         default: 'Non précisé'
      },
      password: {
          type: String
