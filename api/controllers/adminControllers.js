@@ -3,6 +3,7 @@
  ****************/
 const Realisation = require('../models/Realisation')
 const Message = require('../models/message')
+const User = require('../models/User')
 
 module.exports = {
 
@@ -10,33 +11,16 @@ module.exports = {
 
         const dbRealisation = await Realisation.find().lean()
         const dbMessage = await Message.find().lean()
+        const dbUser = await User.find().lean()
 
         res.render('admin', {
             dbRealisation: dbRealisation,
             dbMessage: dbMessage,
+            dbUser: dbUser,
             layout: 'adminLayout'
         })
 
     },
-
-    // RECUPERE LES REALISATIONS //
-    // admin: (req, res) => {
-
-    //     admin
-    //         .find()
-    //         .lean()
-    //         .exec((err, data) => {
-    //             if (err) console.log(err)
-    //             res.render('home', {
-    //                     success: 'Success Get !',
-    //                     dbComment: data
-    //                 })
-    //                 // res.json({
-    //                 //     success: 'Success Get !',
-    //                 //     dbRealisation: data
-    //                 // })
-    //         })
-    // },
 
     // GENERE UN ID //
     getID: (req, res) => {

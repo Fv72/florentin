@@ -13,41 +13,33 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
 
-            {{!-- Create --}}
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserRealisation"
-                data-whatever="@mdo">Créer un utilisateur</button>
-
             <!-- Table Realisation -->
             <table class="table table-sm table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    {{#each dbUser}}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>{{ mail }}</td>
+                        <td>{{ name }}</td>
+                        <td>{{ lastname }}</td>
                         <td>
                             {{!-- Edit --}}
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalEditRealisation" data-whatever="@mdo">Editer utilisateur</button>
+                                data-target="#modalEditUser" data-whatever="@mdo">Editer utilisateur</button>
                             {{!-- Delete --}}
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalDeleteRealisation" data-whatever="@mdo">Bannir
+                            <button type="submit" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalDeleteUser" data-whatever="@mdo">Bannir
                                 utilisateur</button>
-
-
                         </td>
                     </tr>
-
+                    {{/each}}
                 </tbody>
             </table>
             <!-- / Table Realisation -->

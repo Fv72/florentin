@@ -1,6 +1,11 @@
 /*
  * Import Module
  ****************/
+const bcrypt = require('bcrypt')
+
+/*
+ * Models
+ ********** */
 const User = require('../models/User')
 
 
@@ -34,14 +39,44 @@ module.exports = {
         }
 
     },
-    auth: (req, res) => {
+    auth: async(req, res) => {
+        // userAuth sera le résultat de notre recherche 'email: req.body.email' via le constructeur User
+        let userAuth = await User.findOne({ email: req.body.email })
+
+        if (!userAuth) {
+            console.log('error')
+            res.render('login', {
+                error: "Ce compte n'existe pas"
+            })
+        } else {
+            console.log('User exist')
+            User
+                .findOne({ email: req.body.email }, (err, data) => {
+                    if (err) console.log(err)
+                    if (!data) {
+                        res.render('login', {
+                            error: "Ce compte n'existe pas"
+                        })
+                    } else {
+                        bcrypt.compare(req.body.password, data.password, (error, same) => {
+                            if (error) console.log(error)
+                            if (!same) {
+                                res.render('login', {
+                                    error: "une erreur est survenue !"
+                                })
+                            } else {
+                                // Redirection vers home.hbs
+                                res.render('login', {
+                                    success: "vous etes connecter au nom de: " + data.name
+                                })
+                            }
+                        })
+                    }
 
 
-        // if (console.log(req.body)) {
-        //     console.log('Auth ok !')
-        // } else {
-        //     (!err)
-        // }
+                })
+        }
+
     }
 
 }

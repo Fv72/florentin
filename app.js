@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
 const hbs = require('express-handlebars')
+const expressSession = require('express-session')
 const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')
+const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const port = 4000
 
@@ -22,6 +24,9 @@ mongoose
     .then(res => console.log('MongoDB: connection success !!'))
     .catch(err => console.log(err))
 
+// save session avec MongoDB
+// const mongoStore = MongoStore(expressSession)
+
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
@@ -29,6 +34,17 @@ app.engine('hbs', hbs({
     defaultLayout: 'main',
     adminLayout: 'adminLayout'
 }));
+
+// Express-session
+// app.use(expressSession({
+//     secret: 'securite',
+//     name: 'florentin',
+//     saveUninitialized: true,
+//     resave: false,
+//     store: new mongoStore({
+//         mongooseConnection: mongoose.connection
+//     })
+// }));
 
 // EXPRESS STATIQUE //
 app.use(express.static("public"))
