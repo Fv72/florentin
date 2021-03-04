@@ -13,7 +13,8 @@ const homeController = require('./controllers/homeController'),
     commentController = require('./controllers/commentController'),
     adminController = require('./controllers/adminControllers'),
     messageController = require('./controllers/messageController'),
-    contactController = require('./controllers/contactController')
+    contactController = require('./controllers/contactController'),
+    authControllers = require('./controllers/authControllers')
 
 
 /*
@@ -39,7 +40,6 @@ router.route('/comment/:id')
 router.route('/message')
     .post(messageController.create)
 
-
 router.route('/messageId/:id')
     .get(messageController.getID)
     .delete(messageController.deleteOne)
@@ -47,25 +47,14 @@ router.route('/messageId/:id')
 router.route('/contact')
     .post(contactController.post)
 
-// router.route('/user')
-//     .get(userControllers.get)
-//     .post(userControllers.create)
-//     .put(userControllers.put)
-//     .deleteOne(userControllers.deleteOne)
+router.route('/login')
+    .get(authControllers.pageLogin)
 
+router.route('/login/register')
+    .post(authControllers.register)
 
-// router.route('/realisation/:id/comment')
-//     .get(commentControllers.get)
-//     .post(commentControllers.post)
-//     .put(commentControllers.put)
-//     .deleteOne(commentControllers.deleteOne)
-
-
-// router.route('message')
-//     .get(messageControllers.get)
-//     .post(messageControllers.post)
-//     .put(messageControllers.put)
-//     .deleteOne(messageControllers.deleteOne)
+router.route('/login/auth')
+    .post(authControllers.auth)
 
 router.route('/admin')
     .get(adminController.get)

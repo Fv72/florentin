@@ -5,6 +5,7 @@
 
  // Import de Mongoose
  const mongoose = require('mongoose')
+ const bcrypt = require('bcrypt')
 
  // Création de notre Shéma (Model)
  // c'est le Model de (Model)
@@ -33,6 +34,16 @@
          default: false
      }
 
+ })
+
+ UserSchema.pre('save', function(next) {
+     // HACHAGE DU MOT DE PASSE //
+     const user = this
+     bcrypt.hash(user.password, 10, (err, encrypted) => {
+         user.password = encrypted
+         next()
+
+     })
  })
 
  // Et l'on export notre model grace à la passerelle Mongoose
