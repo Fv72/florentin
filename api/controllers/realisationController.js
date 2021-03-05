@@ -27,7 +27,7 @@ module.exports = {
     // GENERE UN ID //
     getID: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE PAR ID //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LA REALISATION PAR ID //
         Realisation
             .findById(req.params.id)
             .populate('comment')
@@ -41,15 +41,15 @@ module.exports = {
             })
     },
 
-    // LE CREATE NOUS PERMET DE CREER UN NOUVEL ARTICLE //
+    // LE CREATE NOUS PERMET DE CREER UN NOUVELE REALIATION  //
     create: (req, res) => {
 
         console.log('Controller create Realisation')
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LA REALISATION //
         Realisation
             .create({
-                // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
+                // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LA REALISATION //
                 title: req.body.title,
                 content: req.body.content
 
@@ -57,21 +57,21 @@ module.exports = {
             }, (err, dataPrim) => {
                 if (err) console.log(err)
 
-                // RENVOIE SUITE A CREATION DE L'ARTICLE A LA PAGE SUIVANTE : 
+                // RENVOIE SUITE A CREATION DE LA REALISATION A LA PAGE SUIVANTE : 
                 res.redirect('/admin')
             })
     },
 
-    // EDITONE NOUS PERMET D'EDITER UN ARTICLE QU'ON A CREE ET DE LE MODIFIER // 
+    // EDITONE NOUS PERMET D'EDITER UNE REALIATION  QU'ON A CREE ET DE LE MODIFIER // 
     editOne: (req, res) => {
 
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LA REALISATION //
         Realisation
         //  RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
 
-            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
+            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LA REALISATION //
             title: req.body.title,
             content: req.body.content
         }, (err, data) => {
@@ -79,15 +79,15 @@ module.exports = {
             // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
-            // REDIRIGE SUITE A L'EDIT  DE L'ARTICLE A LA PAGE SUIVANTE : 
+            // REDIRIGE SUITE A L'EDIT  DE LA REALISATION A LA PAGE SUIVANTE : 
             res.redirect('/admin')
         })
     },
 
-    // DELETEONE PERMET DE SUPPRIMER UN ARTICLE //
+    // DELETEONE PERMET DE SUPPRIMER UNE REALIATION  //
     deleteOne: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER L'ARTICLE //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER LA REALISATION //
         Realisation
 
         // RECHERCHE PAR ID ET SUPPRIME //
@@ -99,7 +99,7 @@ module.exports = {
             // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
-            // REDIRIGE SUITE A SUPPRESSION DE L'ARTICLE A LA PAGE SUIVANTE :
+            // REDIRIGE SUITE A SUPPRESSION DE LA REALISATION A LA PAGE SUIVANTE :
             res.redirect('/admin')
         })
     }

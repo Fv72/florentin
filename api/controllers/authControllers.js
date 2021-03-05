@@ -67,7 +67,7 @@ module.exports = {
                             } else {
                                 // Redirection vers home.hbs
                                 res.render('login', {
-                                    success: "vous etes connecter au nom de: " + data.name
+                                    success: "vous etes connecté au nom de: " + data.name
                                 })
                             }
                         })
