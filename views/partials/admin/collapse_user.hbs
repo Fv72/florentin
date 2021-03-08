@@ -24,6 +24,7 @@
                         <th scope="col">Mail</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
+                        <th scope="col">Admin</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -33,21 +34,18 @@
                         <td>{{ email }}</td>
                         <td>{{ firstname }}</td>
                         <td>{{ lastname }}</td>
+                        <td>{{ isAdmin }}</td>
                         <td>
                             {{!-- Edit --}}
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalEditUser" data-whatever="@mdo">Editer utilisateur</button>
-                            {{!-- Delete --}}
-                            <button type="submit" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modalDeleteUser" data-whatever="@mdo">Bannir
-                                utilisateur</button>
+                                data-target="#modalEditUser{{_id}}" data-whatever="@mdo">Editer utilisateur</button>
                         </td>
                     </tr>
+                    {{> modals/modalEditUser }}
                     {{/each}}
                 </tbody>
             </table>
             <!-- / Table Realisation -->
-
         </div>
     </div>
 </div>

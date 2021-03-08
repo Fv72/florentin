@@ -41,7 +41,7 @@ module.exports = {
                     if (err) console.log(err)
 
                     // RENVOI SUITE A CREATION DE L'AUTH A LA PAGE SUIVANTE : 
-                    // res.redirect('/login')
+
                     res.render('login', {
                         success: 'Inscription complète'
                     })
