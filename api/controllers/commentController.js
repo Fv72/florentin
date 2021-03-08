@@ -28,7 +28,7 @@ module.exports = {
     // GENERE UN ID //
     getID: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE PAR ID //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LE COMMENTAIRE PAR ID //
         Realisation
             .findById(req.params.id)
             .exec((err, data) => {
@@ -60,31 +60,31 @@ module.exports = {
         res.redirect(`/realisation/${realisation._id}`)
     },
 
-    // EDITONE NOUS PERMET D'EDITER UN ARTICLE QU'ON A CREE ET DE LE MODIFIER // 
+    // EDITONE NOUS PERMET D'EDITER UN COMMENTAIRE  QU'ON A CREE ET DE LE MODIFIER // 
     editOne: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L'ARTICLE //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LE COMMENTAIRE //
         Realisation
 
         //  RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
 
-            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER L'ARTICLE //
+            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LE COMMENTAIRE //
             title: req.body.title
         }, (err, data) => {
 
             // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
-            // REDIRIGE SUITE A L'EDIT  DE L'ARTICLE A LA PAGE SUIVANTE : 
+            // REDIRIGE SUITE A L'EDIT  DU COMMENTAIRE A LA PAGE SUIVANTE : 
             res.redirect('realisation/:id')
         })
     },
 
-    // DELETEONE PERMET DE SUPPRIMER UN ARTICLE //
+    // DELETEONE PERMET DE SUPPRIMER UN COMMENTAIRE //
     deleteOne: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER L'ARTICLE //
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER LE COMMENTAIRE //
         Realisation
 
         // RECHERCHE PAR ID ET SUPPRIME //

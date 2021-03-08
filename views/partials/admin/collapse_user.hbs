@@ -13,6 +13,10 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
 
+            {{!-- Create --}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalsCreateUser"
+                data-whatever="@mdo">Créer user</button>
+            {{> modals/user/modalsCreateUser }}
             <!-- Table Realisation -->
             <table class="table table-sm table-dark">
                 <thead>
@@ -26,8 +30,8 @@
                 <tbody>
                     {{#each dbUser}}
                     <tr>
-                        <td>{{ mail }}</td>
-                        <td>{{ name }}</td>
+                        <td>{{ email }}</td>
+                        <td>{{ firstname }}</td>
                         <td>{{ lastname }}</td>
                         <td>
                             {{!-- Edit --}}

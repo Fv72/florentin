@@ -1,6 +1,6 @@
 <div class="modal-content align-items-center">
     <!-- Modal -->
-    <div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalsCreateUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true" class="col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -15,6 +15,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <form action="" method="post">
+
                                     <label for="email">E-Mail</label>
                                     <input type="email" class="form-control" name="emailLogin" id="emailLogin"
                                         required="" aria-describedby="emailHelp">
@@ -26,22 +27,24 @@
                                             Must be 8-20 characters long.
                                         </small>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="inputPassword6">Confirm Pass.</label>
+                                        <label for="inputPassword6">Confirmer password</label>
                                         <input type="password" id="inputPassword6" class="form-control mx-sm-3"
                                             aria-describedby="passwordHelpInline">
                                         <small id="passwordHelpInline" class="text-muted">
                                         </small>
                                     </div>
                                     <label for="Name">Nom</label>
-                                    <input type="Name" class="form-control" name="emailLogin" id="emailLogin"
-                                        required="" aria-describedby="emailHelp">
+                                    <input type="Name" class="form-control" name="name" id="emailLogin" required=""
+                                        aria-describedby="emailHelp">
+
                                     <label for="Prénom">Prénom</label>
-                                    <input type="Prénom" class="form-control" name="emailLogin" id="emailLogin"
+                                    <input type="Prénom" class="form-control" name="lastname" id="emailLogin"
                                         required="" aria-describedby="emailHelp">
 
-                                    <input type="téléphone" class="form-control" name="emailLogin" id="emailLogin"
-                                        required="" aria-describedby="emailHelp">
+
+
                                     <button type="button" class="btn btn-secondary"
                                         data-dismiss="modal">Annuler</button>
                                     <button type="button" class="btn btn-primary">S'inscrire</button>

@@ -11,29 +11,28 @@
         <div class="col-md-9 register-right">
 
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                {{!-- Register --}}
+                {{!-- unscription --}}
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#admin" role="tab"
-                        aria-controls="home" aria-selected="true">Utilisateur</a>
+                        aria-controls="home" aria-selected="true">S'inscrire</a>
                 </li>
                 {{!-- Connexion --}}
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                         aria-controls="profile" aria-selected="false">Connexion</a>
                 </li>
-                {{!-- mot de passe oublier --}}
+                {{!-- mot de passe oublié --}}
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lostPassword" role="tab"
-                        aria-controls="profile" aria-selected="false">Passe oublié ?</a>
+                        aria-controls="profile" aria-selected="false">Mot de passe oublié</a>
                 </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
-
-                {{!-- Register --}}
+                {{!-- inscription --}}
                 <div class="tab-pane fade show active" id="admin" role="tabpanel" aria-labelledby="home-tab">
                     <div class="register-heading">
-                        <h3>Créé un compte Utilisateur</h3>
+                        <h3>Créer un compte Utilisateur</h3>
                         {{#if success}}
                         <p class="text-success"> {{ success }} </p>
                         {{/if}}
@@ -46,19 +45,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nom :</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Tux" required />
+                                    <input type="text" class="form-control" name="firstname" placeholder="Tux"
+                                        required />
                                 </div>
                                 <div class="form-group">
-                                    <label>Mot de passe :</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Password *"
-                                        value="" required />
+                                    <label>Prénom : </label>
+                                    <input type="text" class="form-control" name="lastname" placeholder="Tux"
+                                        required />
                                 </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>E-mail :</label>
                                     <input type="email" class="form-control" name="email" placeholder="Email *" value=""
                                         required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Mot de passe :</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Password *"
+                                        value="" required />
                                 </div>
                                 <div class="form-group">
                                     <label>Répéter mot de passe :</label>
@@ -95,7 +100,7 @@
                     </form>
                 </div>
 
-                {{!-- Mot de passe oublier --}}
+                {{!-- Mot de passe oublié --}}
                 <div class="tab-pane fade show" id="lostPassword" role="tabpanel" aria-labelledby="profile-tab">
                     <h3 class="register-heading">Mot de passe oublié ?</h3>
                     <form action="/login/lostPassword" method="POST">

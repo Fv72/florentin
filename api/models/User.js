@@ -14,10 +14,7 @@
      title: String,
      name: String,
      firstname: String,
-     gender: {
-         type: String,
-         default: 'Non précisé'
-     },
+
      password: {
          type: String
      },
@@ -25,6 +22,17 @@
          type: String,
          required: true
      },
+
+     firstname: {
+         type: String,
+         required: true
+     },
+
+     lastname: {
+         type: String,
+         required: true
+     },
+
      isAdmin: {
          type: Boolean,
          default: false
@@ -33,6 +41,7 @@
          type: Boolean,
          default: false
      }
+
 
  })
 

@@ -22,23 +22,6 @@ module.exports = {
 
     },
 
-    // GENERE UN ID //
-    getID: (req, res) => {
-
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER L'ARTICLE PAR ID //
-        admin
-            .findById(req.params.id)
-            .exec((err, data) => {
-                if (err) console.log(err)
-
-                res.json({
-                    success: 'Success get ID !',
-                    dbComment: data
-                })
-            })
-    },
-
-
     create: (req, res) => {
         admin
             .create({
