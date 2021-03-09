@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
-const hbs = require('express-handlebars')
-const expressSession = require('express-session')
-const mongoose = require('mongoose')
-const MongoStore = require('connect-mongo')
+const hbs = require('express-handlebars'),
+    expressSession = require('express-session'),
+    mongoose = require('mongoose'),
+    MongoStore = require('connect-mongo');
+
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const port = 4000
@@ -26,35 +27,32 @@ mongoose
     .catch(err => console.log(err))
 
 // save session avec MongoDB
+const mongoStore = MongoStore(expressSession)
 
 // HELPERS LIMITARRAY //
 const { limitArray } = require('./api/helpers/hbs')
-
-app.use('hbs', hbs({
-    extname: 'hbs',
-    helpers: {
-        limit: limitArray
-    }
-}))
 
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     extname: 'hbs',
     defaultLayout: 'main',
-    adminLayout: 'adminLayout'
+    adminLayout: 'adminLayout',
+    helpers: {
+        limit: limitArray
+    }
 }));
 
-// Express-session
-// app.use(expressSession({
-//     secret: 'securite',
-//     name: 'florentin',
-//     saveUninitialized: true,
-//     resave: false,
-//     store: new mongoStore({
-//         mongooseConnection: mongoose.connection
-//     })
-// }));
+// Express - session
+app.use(expressSession({
+    secret: 'securite',
+    name: 'florentin',
+    saveUninitialized: true,
+    resave: false,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    })
+}));
 
 // EXPRESS STATIQUE //
 app.use(express.static("public"))

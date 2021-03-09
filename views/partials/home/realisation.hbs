@@ -6,7 +6,7 @@
             <h2>Mes réalisations</h2>
         </div>
 
-        {{#each dbRealisation }}
+        {{#each ( limit dbRealisation 1 ) }}
 
         <div class="card col-md-6 col-xl-4 col-sm-12">
             <a href="/realisation/{{ _id }}">
