@@ -7,44 +7,12 @@ const Realisation = require('../models/Realisation')
 
 module.exports = {
 
-    // RECUPERE LES COMMENTAIRES //
-    // comment: (req, res) => {
-
-    //     comment
-    //         .find()
-    //         .lean()
-    //         .exec((err, data) => {
-    //             if (err) console.log(err)
-    //             console.log(data)
-    //             res.render('home', {
-    //                 success: 'Success Get !',
-    //                 dbComment: data
-    //             })
-
-    //         })
-    // },
-
-    // GENERE UN ID //
-    // getID: (req, res) => {
-
-    //     // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LE COMMENTAIRE PAR ID //
-    //     comment
-    //         .findById(req.params.id)
-    //         .exec((err, data) => {
-    //             if (err) console.log(err)
-
-    //             res.json({
-    //                 success: 'Success get ID !',
-    //                 dbComment: data
-    //             })
-    //         })
-    // },
-
 
     create: async(req, res) => {
         console.log('cONTROLLER COMMENTAIRE ok !')
         console.log(req.body)
 
+        // CREE L'ATTENTE DE L'ID REALISATION PAR ID  //
         const realisation = await Realisation.findById(req.params.id)
 
         const comment = new Comment({
@@ -53,7 +21,7 @@ module.exports = {
             refID: realisation._id
         })
 
-        // PUSH DU COMMENTAIRE //
+        // PUSH DU COMMENTAIRE DANS LA DB //
         realisation.comment.push(comment._id)
 
         // effectue une save du commentaire //
@@ -66,7 +34,7 @@ module.exports = {
             if (err) return handleError(err)
         })
 
-
+        // RENVOI VERS LA PAGE ID DANS LAQUELLE ON A COMMENTE //
         res.redirect(`/realisation/${realisation._id}`)
     },
 

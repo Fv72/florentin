@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const port = 4000
 
+
 // Module .env
 require('dotenv').config()
 
@@ -25,7 +26,16 @@ mongoose
     .catch(err => console.log(err))
 
 // save session avec MongoDB
-// const mongoStore = MongoStore(expressSession)
+
+// HELPERS LIMITARRAY //
+const { limitArray } = require('./api/helpers/hbs')
+
+app.use('hbs', hbs({
+    extname: 'hbs',
+    helpers: {
+        limit: limitArray
+    }
+}))
 
 // Handlebars
 app.set('view engine', 'hbs');

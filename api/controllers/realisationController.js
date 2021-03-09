@@ -15,6 +15,8 @@ module.exports = {
                 if (err) console.log(err)
                 res.render('realisations', {
                     dbRealisation: data,
+
+                    // FONCTION PERMETANT DE RECHERCHE UN ITEM DANS LA DB DANS LES REALISATIONS //
                     search: 'input'
                 })
             })
@@ -43,7 +45,11 @@ module.exports = {
     create: (req, res) => {
 
         console.log('Controller create Realisation')
+
+        // CONSOLE LOG DES DATAS //
         console.log(req.body)
+
+        // VARIABLE DEFINIE ET MODIFIABLE COMME ON VEUT //
         const b = req.body
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LA REALISATION //
@@ -65,9 +71,12 @@ module.exports = {
     // PUT //
     editOne: (req, res) => {
         const b = req.body
+
+        // A COMMENTER !!! //
         console.log('EDITONE REALISATIONS BODY: ', b)
         console.log('EDITONE REALISATIONS PARAMS: ', req.params.id)
-            // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LA REALISATION //
+
+        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LA REALISATION //
         Realisation
         // RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {

@@ -21,6 +21,6 @@
      }]
  })
 
- // Et l'on export notre model grace à la passerelle Mongoose
- // Ce qui nous permettra de pouvoir l'utiliser sur d'autre page
+ // EXPORT GRACE A LA PASSERELLE MONGOOSE DU MODEL CI-DESSUS DANS LE BUT 
+ // DE SE SERVIR DE CELUI CI SUR D'AUTRES PAGES //
  module.exports = mongoose.model('Realisation', RealisationSchema)
