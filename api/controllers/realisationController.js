@@ -13,13 +13,9 @@ module.exports = {
             .lean()
             .exec((err, data) => {
                 if (err) console.log(err)
-                    // res.render('home', {
-                    //         success: 'Success Get !',
-                    //         dbRealisation: data
-                    //     })
-                res.json({
-                    success: 'Success Get !',
-                    dbRealisation: data
+                res.render('realisations', {
+                    dbRealisation: data,
+                    search: 'input'
                 })
             })
     },
@@ -31,49 +27,54 @@ module.exports = {
         Realisation
             .findById(req.params.id)
             .populate('comment')
+            .lean()
             .exec((err, data) => {
                 if (err) console.log(err)
-
-                res.json({
-                    success: 'Success get ID !',
-                    dbRealisation: data
+                console.log(data)
+                res.render('realisationID', {
+                    success: 'Get OK !!!',
+                    realisationID: data
                 })
+
             })
     },
 
-    // LE CREATE NOUS PERMET DE CREER UN NOUVELE REALIATION  //
+    // LE CREATE NOUS PERMET DE CREER UN NOUVELE REALISATION  //
     create: (req, res) => {
 
         console.log('Controller create Realisation')
+        console.log(req.body)
+        const b = req.body
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LA REALISATION //
         Realisation
             .create({
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LA REALISATION //
-                title: req.body.title,
-                content: req.body.content
+                title: b.title,
+                content: b.content
 
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
-            }, (err, dataPrim) => {
+            }, (err, data) => {
                 if (err) console.log(err)
 
-                // RENVOIE SUITE A CREATION DE LA REALISATION A LA PAGE SUIVANTE : 
+                // RENVOI SUITE A CREATION DE LA REALISATION A LA PAGE SUIVANTE : 
                 res.redirect('/admin')
             })
     },
 
-    // EDITONE NOUS PERMET D'EDITER UNE REALIATION  QU'ON A CREE ET DE LE MODIFIER // 
+    // PUT //
     editOne: (req, res) => {
-
-
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LA REALISATION //
+        const b = req.body
+        console.log('EDITONE REALISATIONS BODY: ', b)
+        console.log('EDITONE REALISATIONS PARAMS: ', req.params.id)
+            // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LA REALISATION //
         Realisation
-        //  RECHERCHE PAR ID ET MET A JOUR //
+        // RECHERCHE PAR ID ET MET A JOUR //
             .findByIdAndUpdate(req.params.id, {
-
+            ...req.body,
             // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LA REALISATION //
-            title: req.body.title,
-            content: req.body.content
+            title: b.title,
+            content: b.content,
         }, (err, data) => {
 
             // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
@@ -84,23 +85,26 @@ module.exports = {
         })
     },
 
-    // DELETEONE PERMET DE SUPPRIMER UNE REALIATION  //
+    // Method delete one 
     deleteOne: (req, res) => {
-
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER LA REALISATION //
+        // consolog.log("Delete REALISATIONS: ", req.params.id)
         Realisation
+            .deleteOne({
 
-        // RECHERCHE PAR ID ET SUPPRIME //
-            .findByIdAndDelete(req.params.id)
+                // On va venir chercher parmis tout les _id celui égale à notre req.params (id recupéré dans l'URL)
+                _id: req.params.id
 
-        // EXECUTE LA COMMANDE DELETE //
-        .exec((err, data) => {
+            }, (err) => {
+                // Si nous avons pas d'erreur alors on redirige
+                if (err) console.log(err)
+                    // Sinon on renvoit l'err
 
-            // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
-            if (err) console.log(err)
+                // RES.JSON = pour les tests unitaires // 
 
-            // REDIRIGE SUITE A SUPPRESSION DE LA REALISATION A LA PAGE SUIVANTE :
-            res.redirect('/admin')
-        })
-    }
+                // res.json({
+                // succes: req.params.id + '// à bien été supprimer'
+                // })
+                res.redirect('/admin')
+            })
+    },
 }

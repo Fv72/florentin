@@ -4,45 +4,47 @@
 const Comment = require('../models/comment')
 const Realisation = require('../models/Realisation')
 
+
 module.exports = {
 
-    // RECUPERE LES REALISATIONS //
-    comment: (req, res) => {
+    // RECUPERE LES COMMENTAIRES //
+    // comment: (req, res) => {
 
-        Comment
-            .find()
-            .lean()
-            .exec((err, data) => {
-                if (err) console.log(err)
-                res.render('home', {
-                        success: 'Success Get !',
-                        dbComment: data
-                    })
-                    // res.json({
-                    //     success: 'Success Get !',
-                    //     dbRealisation: data
-                    // })
-            })
-    },
+    //     comment
+    //         .find()
+    //         .lean()
+    //         .exec((err, data) => {
+    //             if (err) console.log(err)
+    //             console.log(data)
+    //             res.render('home', {
+    //                 success: 'Success Get !',
+    //                 dbComment: data
+    //             })
+
+    //         })
+    // },
 
     // GENERE UN ID //
-    getID: (req, res) => {
+    // getID: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LE COMMENTAIRE PAR ID //
-        Realisation
-            .findById(req.params.id)
-            .exec((err, data) => {
-                if (err) console.log(err)
+    //     // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LE COMMENTAIRE PAR ID //
+    //     comment
+    //         .findById(req.params.id)
+    //         .exec((err, data) => {
+    //             if (err) console.log(err)
 
-                res.json({
-                    success: 'Success get ID !',
-                    dbComment: data
-                })
-            })
-    },
+    //             res.json({
+    //                 success: 'Success get ID !',
+    //                 dbComment: data
+    //             })
+    //         })
+    // },
 
 
     create: async(req, res) => {
+        console.log('cONTROLLER COMMENTAIRE ok !')
+        console.log(req.body)
+
         const realisation = await Realisation.findById(req.params.id)
 
         const comment = new Comment({
@@ -51,53 +53,61 @@ module.exports = {
             refID: realisation._id
         })
 
+        // PUSH DU COMMENTAIRE //
         realisation.comment.push(comment._id)
 
-        realisation.save()
+        // effectue une save du commentaire //
+        comment.save((err) => {
+            if (err) return handleError(err)
+        })
 
-        comment.save()
+        // effectue une save de la réalisation //
+        realisation.save((err) => {
+            if (err) return handleError(err)
+        })
+
 
         res.redirect(`/realisation/${realisation._id}`)
     },
 
-    // EDITONE NOUS PERMET D'EDITER UN COMMENTAIRE  QU'ON A CREE ET DE LE MODIFIER // 
-    editOne: (req, res) => {
+    // // EDITONE NOUS PERMET D'EDITER UN COMMENTAIRE  QU'ON A CREE ET DE LE MODIFIER // 
+    // editOne: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LE COMMENTAIRE //
-        Realisation
+    //     // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LE COMMENTAIRE //
+    //     comment
 
-        //  RECHERCHE PAR ID ET MET A JOUR //
-            .findByIdAndUpdate(req.params.id, {
+    //     //  RECHERCHE PAR ID ET MET A JOUR //
+    //         .findByIdAndUpdate(req.params.id, {
 
-            // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LE COMMENTAIRE //
-            title: req.body.title
-        }, (err, data) => {
+    //         // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LE COMMENTAIRE //
+    //         title: req.body.title
+    //     }, (err, data) => {
 
-            // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
-            if (err) console.log(err)
+    //         // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
+    //         if (err) console.log(err)
 
-            // REDIRIGE SUITE A L'EDIT  DU COMMENTAIRE A LA PAGE SUIVANTE : 
-            res.redirect('realisation/:id')
-        })
-    },
+    //         // REDIRIGE SUITE A L'EDIT  DU COMMENTAIRE A LA PAGE SUIVANTE : 
+    //         res.redirect('comment/:id')
+    //     })
+    // },
 
     // DELETEONE PERMET DE SUPPRIMER UN COMMENTAIRE //
     deleteOne: (req, res) => {
 
-        // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT SUPPRIMER LE COMMENTAIRE //
-        Realisation
+        // FONCTION DE SUPPRESSION D'UN COMMENTAIRE PAR ID //
+        Comment
 
         // RECHERCHE PAR ID ET SUPPRIME //
             .findByIdAndDelete(req.params.id)
 
         // EXECUTE LA COMMANDE DELETE //
         .exec((err, data) => {
-
-            // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
+            console.log(data)
+                // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
-            // REDIRIGE SUITE A SUPPRESSION DE L'ARTICLE A LA PAGE SUIVANTE :
-            res.redirect('/realisation')
+            // REDIRIGE SUITE A SUPPRESSION DU COMMENTAIRE VIE LA FONCTION $ ET UNE CHAINE DE CARRACTERES :
+            res.redirect('/realisation/' + data.refID)
         })
     }
 }

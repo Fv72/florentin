@@ -45,7 +45,9 @@
 
  })
 
+ // Securisation via le middlware du hachage // 
  UserSchema.pre('save', function(next) {
+
      // HACHAGE DU MOT DE PASSE //
      const user = this
      bcrypt.hash(user.password, 10, (err, encrypted) => {

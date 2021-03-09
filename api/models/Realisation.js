@@ -4,9 +4,10 @@
   ******************************/
 
  // Import de Mongoose
- const mongoose = require('mongoose')
 
- const Comment = require('./comment')
+ const mongoose = require('mongoose')
+ const Schema = mongoose.Schema
+ const comment = require('./comment')
 
  // Création de notre Shéma (Model)
  // c'est le Model de (Model)
