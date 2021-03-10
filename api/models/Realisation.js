@@ -22,5 +22,5 @@
  })
 
  // EXPORT GRACE A LA PASSERELLE MONGOOSE DU MODEL CI-DESSUS DANS LE BUT 
- // DE SE SERVIR DE CELUI CI SUR D'AUTRES PAGES //
+ // DE SE SERVIR DE CELUI CI SUR D'AUTRES PAGES 
  module.exports = mongoose.model('Realisation', RealisationSchema)

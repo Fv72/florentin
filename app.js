@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
-const hbs = require('express-handlebars'),
-    expressSession = require('express-session'),
-    mongoose = require('mongoose'),
-    MongoStore = require('connect-mongo');
+const hbs = require('express-handlebars')
+    // expressSession = require('express-session'),
+    // mongoose = require('mongoose'),
+    // MongoStore = require('connect-mongo');
 
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')

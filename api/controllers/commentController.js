@@ -9,15 +9,15 @@ module.exports = {
 
 
     create: async(req, res) => {
-        console.log('cONTROLLER COMMENTAIRE ok !')
+        console.log('CONTROLLER COMMENTAIRE OK !')
         console.log(req.body)
 
         // CREE L'ATTENTE DE L'ID REALISATION PAR ID  //
         const realisation = await Realisation.findById(req.params.id)
 
         const comment = new Comment({
-            title: req.body.title,
             author: req.body.author,
+            content: req.body.content,
             refID: realisation._id
         })
 

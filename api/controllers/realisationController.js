@@ -33,8 +33,10 @@ module.exports = {
             .exec((err, data) => {
                 if (err) console.log(err)
                 console.log(data)
-                res.render('realisationID', {
+                res.render('realisationsID', {
                     success: 'Get OK !!!',
+
+                    // DATA = RESULTAT DE LA FONCTION CI-DESSUS (TITRE ID ...) //
                     realisationID: data
                 })
 

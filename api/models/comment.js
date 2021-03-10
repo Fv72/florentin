@@ -10,8 +10,9 @@
  // c'est le Model de (Model)
  const CommentSchema = new mongoose.Schema({
      // Première variable (basique)
-     title: String,
+
      author: String,
+     content: String,
      refID: String
  })
 
