@@ -2,7 +2,6 @@
  * Import Module
  ****************/
 const express = require('express'),
-
     router = express.Router(),
     path = require('path')
 
@@ -23,8 +22,8 @@ const homeController = require('./controllers/homeController'),
     adminController = require('./controllers/adminControllers'),
     messageController = require('./controllers/messageController'),
     contactController = require('./controllers/contactController'),
-    authControllers = require('./controllers/authControllers');
-const userControllers = require('./controllers/userControllers');
+    authControllers = require('./controllers/authControllers'),
+    userController = require('./controllers/userControllers');
 
 
 
@@ -75,9 +74,10 @@ router.route('/login/auth')
 router.route('/admin')
     .get(adminController.get)
 
+
 router.route('/user/:id')
-    .put(userControllers.editOne)
-    .delete(userControllers.deleteOne)
+    .put(userController.editOne)
+    .delete(userController.deleteOne)
 
 
 

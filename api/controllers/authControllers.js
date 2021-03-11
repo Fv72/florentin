@@ -12,6 +12,26 @@ const bcrypt = require('bcrypt')
 // GENERE UN LOGIN //
 
 module.exports = {
+    // Method Put
+    jacob: (req, res) => {
+        let boolAdmin = false
+        let boolVerified = false
+        let boolBan = false
+
+        if (req.body.isAdmin === 'on') boolAdmin = true;
+        if (req.body.isBan === 'on') boolBan = true;
+        if (req.body.isVerified === 'on') boolVerified = true;
+        console.log(req.body)
+        User
+            .findByIdAndUpdate(req.params.id, {
+                isAdmin: boolAdmin,
+                isVerified: boolVerified,
+                isBan: boolBan,
+            }, (err, data) => {
+                if (err) console.log(err)
+                res.redirect('/admin')
+            })
+    },
     // Controller créate //
     pageLogin: (req, res) => {
         res.render('login')

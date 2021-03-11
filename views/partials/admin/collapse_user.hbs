@@ -39,9 +39,13 @@
                             {{!-- Edit --}}
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modalEditUser{{_id}}" data-whatever="@mdo">Editer utilisateur</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalDeleteUser{{_id}}" data-whatever="@mdo">Bannir utilisateur</button>
+                        </td>
                         </td>
                     </tr>
                     {{> modals/modalEditUser }}
+                    {{> modals/modalDeleteUser}}
                     {{/each}}
 
                 </tbody>
