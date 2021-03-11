@@ -37,7 +37,13 @@
          type: Boolean,
          default: false
      },
+
      isBan: {
+         type: Boolean,
+         default: false
+     },
+
+     isVerified: {
          type: Boolean,
          default: false
      }

@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit {{firstname}} {{lastname}}</h5>
+                <h5 class="modal-title">Editer {{firstname}} {{lastname}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,11 +13,11 @@
                 <p>email : {{email}}</p>
                 <form action="/user/{{ _id }}/?_method=PUT" method="post">
                     <label for="">Admin</label>
-                    <input type="checkbox" name='isAdmin'>
+                    <input type="checkbox" id="isAdmin" name='isAdmin'>
                     <label for="">Verified</label>
-                    <input type="checkbox" name='isVerified'>
+                    <input type="checkbox" id="isVerified" name='isVerified'>
                     <label for="">Ban</label>
-                    <input type="checkbox" name='isBan'>
+                    <input type="checkbox" id="isBan" name='isBan'>
                     <button type="submit">Editer {{ firstname }} </button>
                 </form>
             </div>
@@ -30,3 +30,22 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    // Verif checked Admin
+    const isAdmin = {{ isAdmin }}
+    const checkedAdmin = document.getElementById('isAdmin')
+    checkedAdmin.checked = isAdmin
+
+    // Verif checked Ban
+    const isVerified = {{ isVerified }}
+    const checkedVerified = document.getElementById('isVerified')
+    checkedVerified.checked = isVerified
+
+    // Verif checked Verified
+    const isBan = {{ isBan }}
+    const checkedBan = document.getElementById('isBan')
+    checkedBan.checked = isBan
+
+</script>
