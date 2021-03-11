@@ -1,12 +1,12 @@
 /*
  * Import Module
- ****************/
-const bcrypt = require('bcrypt')
+
 
 /*
  * Models
  ********** */
 const User = require('../models/User')
+const bcrypt = require('bcrypt')
 
 
 // GENERE UN LOGIN //
@@ -19,16 +19,14 @@ module.exports = {
     },
     register: (req, res) => {
         console.log('Controller Register: ', req.body)
-            // Check mdp1 avec mdp2 si ils sont identiques //
-        if (req.body.password !== req.body.password2) {
 
+        // Check mdp1 avec mdp2 si ils sont identiques //
+        if (req.body.password !== req.body.password2) {
 
             // erreur //
             res.render('login', {
                 error: 'Vos mots de passe ne correspondent pas !'
             })
-
-
         } else {
 
             // pas erreur //
@@ -47,7 +45,6 @@ module.exports = {
                     })
                 })
         }
-
     },
     auth: async(req, res) => {
         // userAuth sera le résultat de notre recherche 'email: req.body.email' via le constructeur User
@@ -63,9 +60,9 @@ module.exports = {
         } else {
             User
             // Regarde de nouveau si l'adresse mail existe après la création du compte //
-                .findOne({ email: req.body.email }, (err, data) => {
+                .findOne({ email: req.body.email }, (err, User) => {
                 if (err) console.log(err)
-                if (!data) {
+                if (!User) {
                     // si erreur dans le MdP, renvoi vers la page login //
                     res.render('login', {
                         error: "Votre authentification n'est pas reconue !"
@@ -73,7 +70,7 @@ module.exports = {
                 } else {
 
                     // Bcrypt va comparer l'adresse mail enregistrée dans la DB et celle saisie par l'user afin de voir si un mdp est rataché a celle ci // 
-                    bcrypt.compare(req.body.password, data.password, (error, same) => {
+                    bcrypt.compare(req.body.password, User.password, (error, same) => {
 
                         // si non-correspondance des données, alors renvoi de message erreur et renvoi sur la page login //
                         if (!same) {
@@ -81,16 +78,46 @@ module.exports = {
                                 error: "une erreur est survenue !"
                             })
                         } else {
+                            // Définition de la Session
+
+                            // notre requête session userId = user._id
+                            req.session.userId = User._id
+
+                            // if useradmin = true else req de la session admin de useradmin
+                            // Si l'utilisateur se connectant est un admin, alors affichage des fonctionalités ratachées au isAdmin
+                            if (User.isAdmin === true) {
+                                req.session.isAdmin = User.isAdmin
+                            }
+                            console.log(User.firstname)
+
+                            // req session user = objects
+                            // defintion de le session 'user'
+                            req.session.user = {
+                                firstname: User.firstname,
+                                email: User.email,
+                                isAdmin: User.isAdmin,
+                                isBan: User.isBan,
+                            }
+
+
                             // Quand on est connecté, ça nous renvoie le message "vous êtes connecté en tant que" suivi du prénom de l'utilisateur + renvoi sur la page home //
-                            res.render('home', {
-                                success: "vous etes connecté au nom de: " + data.firstname
-                            })
+                            res.redirect('/')
                         }
                     })
                 }
 
             })
         }
+
+    },
+
+    // La fonction de la déco fait annupler et genere de nouveau un cookie + redirection page home //
+    logout: (req, res) => {
+        req.session.destroy(() => {
+            res.clearCookie('cookie-sess')
+            console.log(req.session)
+            res.redirect('/')
+        })
 
     }
 

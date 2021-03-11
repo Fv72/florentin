@@ -3,7 +3,8 @@ module.exports = {
         res.render('home')
     }
 }
-const User = require('../models/user')
+const User = require('../models/User')
+
 
 module.exports = {
 
@@ -57,7 +58,7 @@ module.exports = {
             })
     },
 
-    // EDITONE NOUS PERMET D'EDITER UN USER  QU'ON A CREE ET DE LE MODIFIER // 
+    // EDITONE NOUS PERMET D'EDITER UN USER // 
     editOne: (req, res) => {
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER L USER  //
@@ -74,7 +75,7 @@ module.exports = {
             if (err) console.log(err)
 
             // REDIRIGE SUITE A L'EDIT  DE L USER A LA PAGE SUIVANTE : 
-            res.redirect('/user')
+            res.redirect('/admin')
         })
     },
 
@@ -94,7 +95,7 @@ module.exports = {
             if (err) console.log(err)
 
             // REDIRIGE SUITE A SUPPRESSION DE L USER A LA PAGE SUIVANTE :
-            res.redirect('/user')
+            res.redirect('/admin')
         })
     }
 }

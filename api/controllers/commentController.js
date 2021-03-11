@@ -74,7 +74,7 @@ module.exports = {
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             if (err) console.log(err)
 
-            // REDIRIGE SUITE A SUPPRESSION DU COMMENTAIRE VIE LA FONCTION $ ET UNE CHAINE DE CARRACTERES :
+            // REDIRIGE SUITE A SUPPRESSION DU COMMENTAIRE VIA LA FONCTION $ ET UNE CHAINE DE CARRACTERES :
             res.redirect('/realisation/' + data.refID)
         })
     }

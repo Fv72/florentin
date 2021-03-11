@@ -6,6 +6,14 @@ const express = require('express'),
     router = express.Router(),
     path = require('path')
 
+
+
+/*
+ * Middlware
+ *************/
+
+const auth = require('./middlewares/auth')
+
 /*
  * Controller
  *************/
@@ -16,6 +24,7 @@ const homeController = require('./controllers/homeController'),
     messageController = require('./controllers/messageController'),
     contactController = require('./controllers/contactController'),
     authControllers = require('./controllers/authControllers');
+const userControllers = require('./controllers/userControllers');
 
 
 
@@ -57,11 +66,20 @@ router.route('/login')
 router.route('/login/register')
     .post(authControllers.register)
 
+router.route('/logout')
+    .get(authControllers.logout)
+
 router.route('/login/auth')
     .post(authControllers.auth)
 
 router.route('/admin')
     .get(adminController.get)
+
+router.route('/user/:id')
+    .put(userControllers.editOne)
+    .delete(userControllers.deleteOne)
+
+
 
 
 

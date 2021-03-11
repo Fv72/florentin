@@ -8,7 +8,27 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="#cards">Réalisations</a>
             <a class="nav-item nav-link" href="#compétences">Compétences</a>
-            <a class="nav-item nav-link" href="#contact">Contactez-moi</a>
+
+
+            {{#if userId }}
+
+            <a class="nav-item nav-link" href="/logout">Se déconnecter</a>
+            {{else}}
+
+            <a class="nav-item nav-link" href="/login">Se connecter</a>
+            {{/if }}
+
+            {{#if admin}}
+
+            <a class="nav-item nav-link" href="/admin">Admin</a>
+
+            {{/if }}
+
+
+
+
+
+
         </div>
     </div>
 </nav>
