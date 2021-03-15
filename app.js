@@ -84,3 +84,6 @@ app.use('/', ROUTER)
 app.listen(port, function() {
     console.log(`Ecoute le port ${port}, lancé à : ${new Date().toLocaleString()}`);
 })
+
+// Utils pour nos TU (mais pas que)
+module.exports = app

@@ -4,6 +4,8 @@
     "description": "``` sass --watch Ressources/css/sass/index.sass:Ressources/css/style.css ```",
     "main": "app.js",
     "scripts": {
+        "test": "nodemon --exec 'mocha ./tests/*.js'",
+        "testRoutes": "nodemon --exec 'mocha ./tests/*Routes*.js'",
         "dev": "nodemon app.js",
         "start": "node app.js"
     },
@@ -27,5 +29,10 @@
         "express-session": "^1.17.1",
         "method-override": "^3.0.0",
         "mongoose": "^5.11.16"
+    },
+    "devDependencies": {
+        "chai": "^4.3.4",
+        "chai-http": "^4.3.0",
+        "mocha": "^8.3.2"
     }
 }
