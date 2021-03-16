@@ -1,7 +1,9 @@
 /*
  * Import Module
  ****************/
-const Realisation = require('../models/Realisation')
+const Realisation = require('../models/Realisation'),
+    fs = require('fs'),
+    path = require('path')
 
 module.exports = {
 
@@ -59,7 +61,11 @@ module.exports = {
             .create({
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LA REALISATION //
                 title: b.title,
-                content: b.content
+                content: b.content,
+
+                // Formater le chemin de notre image pour la DB //
+                imgRealisation: `/assets/images/${req.file.originalname}`,
+                imgName: req.file.originalname
 
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             }, (err, data) => {
@@ -77,6 +83,8 @@ module.exports = {
         // A COMMENTER !!! //
         console.log('EDITONE REALISATIONS BODY: ', b)
         console.log('EDITONE REALISATIONS PARAMS: ', req.params.id)
+        console.log('EDITONE REALISATIONS Body: ', req.body)
+        console.log('EDITONE REALISATIONS File: ', req.file)
 
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LA REALISATION //
         Realisation
@@ -96,26 +104,34 @@ module.exports = {
         })
     },
 
-    // Method delete one 
-    deleteOne: (req, res) => {
-        // consolog.log("Delete REALISATIONS: ", req.params.id)
-        Realisation
-            .deleteOne({
+    // Methods DELETE ONE
+    deleteOne: async(req, res) => {
+        console.log("Delete REALISATIONS: ", req.params.id)
 
-                // On va venir chercher parmis tout les _id celui égale à notre req.params (id recupéré dans l'URL)
-                _id: req.params.id
+        // Ici on déclare la récupération de notre articleID grace à notre recherche asynchrone filtrer avec notre req.params.id
+        const dbArticle = await Realisation.findById(req.params.id),
+            // Ici on déclare le chemin de l'image qui devra etre supprimer
+            pathImg = path.resolve("public/images/" + dbArticle.imgName)
 
-            }, (err) => {
-                // Si nous avons pas d'erreur alors on redirige
+
+
+        // Ici nous avons une fonction de suppression de notre article filtrer grace à req.params.id (objet dans la DB)
+        Realisation.deleteOne({ _id: req.params.id }, (err) => {
+            // Ici notre callback verifie bien que notre fonction c'est passer sans erreur
+            if (err) console.log(err)
+                // Et si nous n'avons aucune erreur alors on execute ça
+
+            // Ici est notre fonction de suppression du fichier (image) avec son callback
+            fs.unlink(pathImg, (err) => {
                 if (err) console.log(err)
-                    // Sinon on renvoit l'err
+                else {
+                    fs.unlink(pathImg, (err) => {
+                        if (err) console.log(err)
+                        res.redirect('/admin')
+                    })
+                }
 
-                // RES.JSON = pour les tests unitaires // 
-
-                // res.json({
-                // succes: req.params.id + '// à bien été supprimer'
-                // })
-                res.redirect('/admin')
             })
+        })
     },
 }

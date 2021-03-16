@@ -18,7 +18,14 @@
      comment: [{
          type: mongoose.Schema.Types.ObjectId,
          ref: 'Comment'
-     }]
+     }],
+
+     imgRealisation: String,
+     imgName: String,
+     createDate: {
+         type: Date,
+         default: new Date()
+     }
  })
 
  // EXPORT GRACE A LA PASSERELLE MONGOOSE DU MODEL CI-DESSUS DANS LE BUT 

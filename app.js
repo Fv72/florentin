@@ -55,7 +55,7 @@ app.use(expressSession({
 }));
 
 // EXPRESS STATIQUE //
-app.use(express.static("public"))
+app.use('/assets', express.static('public'))
 
 // Body Parser qui nous permet de parser des data d'une req a une autre
 app.use(bodyParser.json());

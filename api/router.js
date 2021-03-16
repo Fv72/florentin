@@ -3,7 +3,9 @@
  ****************/
 const express = require('express'),
     router = express.Router(),
-    path = require('path')
+    path = require('path'),
+    upload = require('./config/multer')
+
 
 
 
@@ -38,11 +40,12 @@ router.route('/')
 
 router.route('/realisation')
     .get(realisationController.recuperationDesRealisations)
-    .post(realisationController.create)
+    .post(upload.single('imageRealisation'), realisationController.create)
+
 
 router.route('/realisation/:id')
     .get(realisationController.getID)
-    .put(realisationController.editOne)
+    .put(upload.single('imageRealisation'), realisationController.editOne)
     .delete(realisationController.deleteOne)
 
 router.route('/comment/:id')
