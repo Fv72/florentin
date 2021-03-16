@@ -4,7 +4,9 @@
 const express = require('express'),
     router = express.Router(),
     path = require('path'),
-    upload = require('./config/multer')
+    upload = require('./config/multer');
+
+
 
 
 
@@ -25,6 +27,7 @@ const homeController = require('./controllers/homeController'),
     messageController = require('./controllers/messageController'),
     contactController = require('./controllers/contactController'),
     authControllers = require('./controllers/authControllers'),
+    nodemailerController = require('./controllers/nodemaillierController'),
     userController = require('./controllers/userControllers');
 
 
@@ -81,6 +84,9 @@ router.route('/admin')
 router.route('/user/:id')
     .put(userController.editOne)
     .delete(userController.deleteOne)
+
+router.route('/nodemailer')
+    .post(nodemailerController.responseMessage)
 
 
 

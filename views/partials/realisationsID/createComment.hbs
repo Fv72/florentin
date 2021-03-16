@@ -1,0 +1,27 @@
+{{!-- Ajouter un nouveau commentaire --}}
+
+<div class="container">
+    <div class="row">
+        {{!-- Formulaire Ajouter un commentaire --}}
+        <form class="row" action="/comment/{{realisationID._id}}" method="post">
+            <!-- Input Username -->
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="author" placeholder="Username" />
+                </div>
+            </div>
+
+            <!-- Input Message -->
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea class="form-control" id="message-text" name="content" placeholder="Message"></textarea>
+                </div>
+            </div>
+
+            <!-- Boutton -->
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary m-2">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -35,7 +35,7 @@ module.exports = {
             .exec((err, data) => {
                 if (err) console.log(err)
                 console.log(data)
-                res.render('realisationsID', {
+                res.render('realisationID', {
                     success: 'Get OK !!!',
 
                     // DATA = RESULTAT DE LA FONCTION CI-DESSUS (TITRE ID ...) //

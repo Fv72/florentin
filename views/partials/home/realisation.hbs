@@ -6,11 +6,11 @@
             <h2>Mes réalisations</h2>
         </div>
 
-        {{#each ( limit dbRealisation 1 ) }}
+        {{#each ( limit dbRealisation 2 ) }}
 
         <div class="card col-md-6 col-xl-4 col-sm-12">
             <a href="/realisation/{{ _id }}">
-                <img src="./Ressources/Images/Imagetest.jpg" class="card-img-top" alt="...">
+                <img src="{{ imgRealisation }}" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
                 <p class="card-text">{{ title }}</p>
