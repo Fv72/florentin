@@ -25,6 +25,7 @@
                 <thead>
                     <tr>
                         <th scope="col">N°</th>
+                        <th scope="col">image</th>
                         <th scope="col">Id</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Contenu</th>
@@ -33,11 +34,12 @@
                 </thead>
                 <tbody>
                     {{#each dbRealisation }}
-                    <th scope="col">
-                        <img style="height : 35px;" src="{{imgRealisation}}" alt="">
-                    </th>
+
                     <tr>
-                        <th scope="row">1</th>
+                        <td scope="row">1</td>
+                        <td scope="col">
+                            <img style="height : 35px;" src="{{imgRealisation}}" alt="">
+                        </td>
                         <td> {{ _id }} </td>
                         <td>{{ title }}</td>
                         <td>{{ content }}</td>

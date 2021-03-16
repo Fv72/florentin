@@ -75,7 +75,7 @@ router.route('/login/auth')
     .post(authControllers.auth)
 
 router.route('/admin')
-    .get(adminController.get)
+    .get(auth.admin, adminController.get)
 
 
 router.route('/user/:id')
