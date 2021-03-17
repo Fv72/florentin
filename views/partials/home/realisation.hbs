@@ -6,18 +6,95 @@
             <h2>Mes réalisations</h2>
         </div>
 
+        {{#if search }}
+
+        <!-- SearchBar -->
+        <div class="container mt-5">
+            <div class="row mt-5">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text " id="basic-addon1">Recherche:</span>
+                    </div>
+                    <input id='searchBar' onkeyup="myFunction()" type="text" class="form-control"
+                        placeholder="Rechercher" aria-label="Rechercher" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+        <!-- / SearchBar -->
+
+        <div id="listCard" class="row">
+            {{#each dbRealisation }}
+
+            <div class="card col-md-4 filterCard">
+                <a href="/realisation/{{ _id }}">
+                    <img src="{{ imgRealisation }}" style="height: 250px;" class="card-img-top" alt="...">
+
+                    <div class="card-body text-center">
+                        <p> {{ title }} </p>
+                        <p> {{ descritpion }} </p>
+                        <p> {{ category }} </p>
+                        <p> {{moment createDate lang="fr" format="dddd, DD MMMM YYYY HH:mm:ss"}} </p>
+                    </div>
+                </a>
+            </div>
+
+            {{/each }}
+        </div>
+
+
+
+        {{else }}
+
         {{#each ( limit dbRealisation 2 ) }}
 
-        <div class="card col-md-6 col-xl-4 col-sm-12">
+        <div class="card col-md-6 justify-content-evenly">
             <a href="/realisation/{{ _id }}">
-                <img src="{{ imgRealisation }}" class="card-img-top" alt="...">
+                <img src="{{ imgRealisation }}" style="height: 250px;" class="card-img-top" alt="...">
+
+                <div class="card-body text-center">
+                    <p> {{ title }} </p>
+                    <p> {{ descritpion }} </p>
+                    <p> {{ category }} </p>
+                    <p> {{moment createDate lang="fr" format="dddd, DD MMMM YYYY HH:mm:ss"}} </p>
+                </div>
             </a>
-            <div class="card-body">
-                <p class="card-text">{{ title }}</p>
-            </div>
         </div>
 
         {{/each }}
 
+        <div class="text-center w100 my-3">
+            <a href="/realisation" class="btn btn-primary">
+                Voir +
+            </a>
+        </div>
+
+        {{/if }}
+
     </div>
 </section>
+<!-- Script Input searchbar  -->
+
+<script>
+    function myFunction() {
+        console.log(document.getElementById('searchBar').value)
+        var input, filter, listCard, filterCard, a, i, txtValue;
+        input = document.getElementById('searchBar');
+        filter = input.value.toUpperCase();
+        listCard = document.getElementById("listCard");
+        filterCard = listCard.getElementsByClassName('filterCard');
+
+        for (i = 0; i < filterCard.length; i++) {
+            p = filterCard[i].getElementsByTagName("a")[0];
+            txtValue = (p.textContent || p.innerText)
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+                filterCard[i].style.display = "";
+            } else {
+
+                filterCard[i].style.display = "none";
+            }
+        }
+    }
+</script>
+<!-- / Script Input searchbar  -->

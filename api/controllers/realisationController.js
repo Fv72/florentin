@@ -59,13 +59,14 @@ module.exports = {
         // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT CREER LA REALISATION //
         Realisation
             .create({
+                ...req.body,
                 // RECHERCHE LA CONST DANS LAQUELLE ON VEUT INDEXER LA REALISATION //
-                title: b.title,
-                content: b.content,
+                // title: b.title,
+                // content: b.content,
 
                 // Formater le chemin de notre image pour la DB //
-                imgRealisation: `/assets/images/${req.file.originalname}`,
-                imgName: req.file.originalname
+                imgRealisation: `/assets/images/${req.file.completed}`,
+                imgName: req.file.completed
 
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //
             }, (err, data) => {
@@ -110,13 +111,15 @@ module.exports = {
             } else res.redirect('/admin')
         } else {
             // RENVOIE VERS LA PAGE DANS LAQUELLE ON VEUT EDITER LA REALISATION //
+
+            console.log('putput: ', req.file)
             Realisation
             // RECHERCHE PAR ID ET MET A JOUR //
                 .findByIdAndUpdate(req.params.id, {
                 ...req.body,
                 // Formater le chemin de notre image pour la DB //
-                imgRealisation: `/assets/images/${req.file.originalname}`,
-                imgName: req.file.originalname
+                imgRealisation: `/assets/images/${req.file.completed}`,
+                imgName: req.file.completed
 
             }, (err, data) => {
                 // SI ERREUR, ALORS RENVOI MESSAGE ERREUR, SINON, CONTINUE //

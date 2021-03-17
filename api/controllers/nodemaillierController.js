@@ -22,8 +22,7 @@ module.exports = {
             from: 'graflo720@gmail.com',
             to: req.body.mail,
             subject: 'Félicitations, ' + req.body.mail + ' !',
-            html: `
-        <h2>${req.body.mail}, Ton premier mail avec nodemailer, Successfull !!</h2> `
+            html: `<h2>${req.body.mail}, Ton premier mail avec nodemailer, Successfull !!</h2> `
         }
 
         // On demande à notre transporter d'envoyer notre mail

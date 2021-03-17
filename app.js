@@ -25,10 +25,14 @@ mongoose
     .then(res => console.log('MongoDB: connection success !!'))
     .catch(err => console.log(err))
 
-
-
 // HELPERS LIMITARRAY //
 const { limitArray } = require('./api/helpers/hbs')
+
+
+// Moment (Handlebars)
+var Handlebars = require("handlebars");
+var MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
 
 // Handlebars
 app.set('view engine', 'hbs');

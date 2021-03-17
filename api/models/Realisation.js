@@ -19,7 +19,12 @@
          type: mongoose.Schema.Types.ObjectId,
          ref: 'Comment'
      }],
-
+     desription: {
+         type: String
+     },
+     category: {
+         type: String
+     },
      imgRealisation: String,
      imgName: String,
      createDate: {
