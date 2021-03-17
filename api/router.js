@@ -88,6 +88,9 @@ router.route('/user/:id')
 router.route('/nodemailer')
     .post(nodemailerController.responseMessage)
 
+router.route('/lostPassword')
+    .post(nodemailerController.lostPassword)
+
 
 
 
