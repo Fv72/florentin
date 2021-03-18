@@ -29,6 +29,7 @@ const homeController = require('./controllers/homeController'),
     authControllers = require('./controllers/authControllers'),
     nodemailerController = require('./controllers/nodemaillierController'),
     userController = require('./controllers/userControllers');
+const { post } = require('./controllers/contactController');
 
 
 
@@ -80,7 +81,6 @@ router.route('/login/auth')
 router.route('/admin')
     .get(auth.admin, adminController.get)
 
-
 router.route('/user/:id')
     .put(userController.editOne)
     .delete(userController.deleteOne)
@@ -91,9 +91,11 @@ router.route('/nodemailer')
 router.route('/lostPassword')
     .post(nodemailerController.lostPassword)
 
+router.route('/lostPassword/:id')
+    .get(nodemailerController.pageEditPassword)
 
-
-
+router.route('/editPassword')
+    .post(authControllers.editPassword)
 
 /***********
  * / Router

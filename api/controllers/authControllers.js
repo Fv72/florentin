@@ -130,7 +130,6 @@ module.exports = {
         }
 
     },
-
     // La fonction de la déco fait annupler et genere de nouveau un cookie + redirection page home //
     logout: (req, res) => {
         req.session.destroy(() => {
@@ -138,7 +137,12 @@ module.exports = {
             console.log(req.session)
             res.redirect('/')
         })
+    },
 
+    // Génération de la page ID (Unique)
+    editPassword: (req, res) => {
+        console.log(req.body)
+        res.end()
     }
 
 }
