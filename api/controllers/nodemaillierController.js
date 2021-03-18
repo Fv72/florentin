@@ -49,12 +49,12 @@ module.exports = {
                 // on definit notre host
             host = req.get('host')
                 // on définit le lien
-            link = "http://" + req.get('host') + "/lostpassword/" + rand
+            link = "http://" + req.get('host') + "/lostPassword/" + rand
                 // et enfin notre mail
             mailOptions = {
                 from: process.env.USER_GMAIL,
                 to: req.body.email,
-                subject: "Veuillez confirmez votre email svp.",
+                subject: "Veuillez confirmer votre email svp.",
                 rand: rand,
                 html: `
         <h2>Encore un effort</h2>,<br>
@@ -70,13 +70,13 @@ module.exports = {
                         console.log(err)
                         res.end("error")
                     } else {
-                        console.log("Message Envoyer")
+                        console.log("Message Envoyé")
                         next()
                     }
                 })
                 // Response
             res.render('home', {
-                success: "Un email à bien été envoyer à " + req.body.email
+                success: "Un email à bien été envoyé à " + req.body.email
             })
 
         } else res.redirect('/')
@@ -97,20 +97,20 @@ module.exports = {
             // Ici on tcheck notre id du mail avec la variable enregistrer en cache (rand)
             if (req.params.id == mailOptions.rand) {
                 console.log("email is verified")
-                res.render('login', {
+                res.render('editPassword', {
                     email: mailOptions.to,
                     user: user
                 })
 
             } else {
                 console.log("email is not verified")
-                res.render('lostpassword', {
+                res.render('lostPassword', {
                     message: "Bad Request !"
                 })
 
             }
         } else {
-            res.render('lostpassword', {
+            res.render('editPassword', {
                 message: "Request is from unknown source !"
             })
 
@@ -129,7 +129,7 @@ module.exports = {
             if (req.params.id == mailOptions.rand) {
                 console.log("email is verified")
                     // res.end("<h1>Email " + mailOptions.to + " is been Successfully verified")
-                res.render('login', {
+                res.render('editPassword', {
                     mailOptions
                 })
 
@@ -141,7 +141,7 @@ module.exports = {
             }
 
         } else {
-            res.render('editPassword', {
+            res.render('login', {
                 message: "Request is from unknown source !"
             })
         }

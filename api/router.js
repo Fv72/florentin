@@ -95,7 +95,7 @@ router.route('/lostPassword/:id')
     .get(nodemailerController.pageEditPassword)
 
 router.route('/editPassword')
-    .post(authControllers.editPassword)
+    .post(authControllers.editPasswordPost)
 
 /***********
  * / Router

@@ -130,7 +130,7 @@ module.exports = {
         }
 
     },
-    // La fonction de la déco fait annupler et genere de nouveau un cookie + redirection page home //
+    // La fonction de la déco fait annuler et genere de nouveau un cookie + redirection page home //
     logout: (req, res) => {
         req.session.destroy(() => {
             res.clearCookie('cookie-sess')
@@ -140,9 +140,29 @@ module.exports = {
     },
 
     // Génération de la page ID (Unique)
-    editPassword: (req, res) => {
-        console.log(req.body)
-        res.end()
-    }
+    editPasswordPost: async(req, res) => {
+        const user = await User.find({
+            email: req.body.email
+        })
+
+        if (!user) {
+            console.log('L utilisateur n exite pas')
+            res.redirect('/')
+        } else {
+            // Mettre controller pour editer l'user
+            bcrypt.hash(req.body.password, 10, (error, encrypted) => {
+                User.findOneAndUpdate({
+                    email: req.body.email
+                }, {
+                    password: encrypted
+                }, (err) => {
+                    if (err) console.log(err)
+
+                    console.log(req.body)
+                    res.redirect('/')
+                })
+            })
+        }
+    },
 
 }
