@@ -4,7 +4,7 @@
         <div class="modal-content">
             <form action="/realisation" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Realisation</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Créer Realisation</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,15 +15,11 @@
                         <input type="text" class="form-control" name="title" id="recipient-name">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Description</label>
-                        <input type="text" class="form-control" name="description" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Category</label>
+                        <label for="recipient-name" class="col-form-label">Categorie</label>
                         <input type="text" class="form-control" name="category" id="recipient-name">
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Réalisation</label>
+                    <div class="text-area">
+                        <label for="message-text" class="col-form-label">Déscription</label>
                         <textarea class="form-control" name='content' id="message-text"></textarea>
                     </div>
                     <input type="file" name="imageRealisation">

@@ -16,7 +16,8 @@ module.exports = {
         const realisation = await Realisation.findById(req.params.id)
 
         const comment = new Comment({
-            author: req.body.author,
+            author: req.session.user.firstname,
+            authorID: req.session.userId,
             content: req.body.content,
             refID: realisation._id
         })

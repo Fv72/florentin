@@ -1,0 +1,8 @@
+{{!-- Suppression d'un commentaire --}}
+{{#ifCond ../session.userId authorId }}
+<div class="container">
+    <form class="mt-2" action="/deleteComments/{{ ../_id }}" method="GET">
+        <button type="submit" class="btn btn-delete"><i class="fas fa-trash-alt"></i></button>
+    </form>
+</div>
+{{/ifCond}}

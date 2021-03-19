@@ -26,7 +26,7 @@ mongoose
     .catch(err => console.log(err))
 
 // HELPERS LIMITARRAY //
-const { limitArray } = require('./api/helpers/hbs')
+const { limitArray, limitInversed, ifCond } = require('./api/helpers/hbs')
 
 
 // Moment (Handlebars)
@@ -41,7 +41,9 @@ app.engine('hbs', hbs({
     defaultLayout: 'main',
     adminLayout: 'adminLayout',
     helpers: {
-        limit: limitArray
+        limit: limitArray,
+        limitInversed: limitInversed,
+        ifCond: ifCond
     }
 }));
 

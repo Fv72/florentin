@@ -27,12 +27,12 @@
 
             <div class="card col-md-4 filterCard">
                 <a href="/realisation/{{ _id }}">
-                    <img src="{{ imgRealisation }}" style="height: 250px;" class="card-img-top" alt="...">
+                    <img src="{{ imgRealisation }}" style="height: 250px;" class="card-img-top">
 
                     <div class="card-body text-center">
                         <p> {{ title }} </p>
+                        <p> {{ categorie }} </p>
                         <p> {{ descritpion }} </p>
-                        <p> {{ category }} </p>
                         <p> {{moment createDate lang="fr" format="dddd, DD MMMM YYYY HH:mm:ss"}} </p>
                     </div>
                 </a>
@@ -45,16 +45,17 @@
 
         {{else }}
 
-        {{#each ( limit dbRealisation 2 ) }}
+        {{#each ( limitInversed dbRealisation 2 ) }}
+
 
         <div class="card col-md-6 justify-content-evenly">
             <a href="/realisation/{{ _id }}">
-                <img src="{{ imgRealisation }}" style="height: 250px;" class="card-img-top" alt="...">
+                <img src="{{ imgRealisation }}" style="height: 250px;" class="card-img-top">
 
                 <div class="card-body text-center">
                     <p> {{ title }} </p>
+                    <p> {{ categorie }} </p>
                     <p> {{ descritpion }} </p>
-                    <p> {{ category }} </p>
                     <p> {{moment createDate lang="fr" format="dddd, DD MMMM YYYY HH:mm:ss"}} </p>
                 </div>
             </a>
@@ -64,7 +65,7 @@
 
         <div class="text-center w100 my-3">
             <a href="/realisation" class="btn btn-primary">
-                Voir +
+                Voir plus de réalisations
             </a>
         </div>
 

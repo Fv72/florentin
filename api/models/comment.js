@@ -9,11 +9,13 @@
  // Création de notre Shéma (Model)
  // c'est le Model de (Model)
  const CommentSchema = new mongoose.Schema({
-     // Première variable (basique)
 
+     // Première variable (basique)
      author: String,
+     authorID: String,
      content: String,
      refID: String
+
  })
 
  // Et l'on export notre model grace à la passerelle Mongoose
