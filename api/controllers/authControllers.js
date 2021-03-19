@@ -77,6 +77,10 @@ module.exports = {
             res.render('login', {
                 error: "Ce compte n'existe pas",
             })
+        } else if (userAuth === true) {
+            res.render('login', {
+                error: "Ce compte est banni, Yes !",
+            })
         } else {
             User
             // Regarde de nouveau si l'adresse mail existe après la création du compte //

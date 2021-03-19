@@ -10,5 +10,10 @@ module.exports = {
 
         // else next
         else next()
+    },
+    ban: (req, res, next) => {
+        console.log('Middlware ban')
+        if (req.session.isBan === true) res.end()
+        else next()
     }
 }

@@ -69,8 +69,10 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+const auth = require('./api/middlewares/auth')
+
 // Déclaration de middleware (Session)
-app.use('*', (req, res, next) => {
+app.use('*', auth.ban, (req, res, next) => {
 
     // Déclaration et utilisation de la session via la DB
     res.locals.userId = req.session.userId;
