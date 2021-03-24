@@ -65,9 +65,7 @@ module.exports = {
 
         // FONCTION DE SUPPRESSION D'UN COMMENTAIRE PAR ID //
         Comment
-
-        // RECHERCHE PAR ID ET SUPPRIME //
-            .findByIdAndDelete(req.params.id)
+            .findByIdAndDelete(req.params.id) // RECHERCHE PAR ID ET SUPPRIME //
 
         // EXECUTE LA COMMANDE DELETE //
         .exec((err, data) => {
