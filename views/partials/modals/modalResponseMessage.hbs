@@ -16,10 +16,8 @@
                     <p>Message:{{ message }}</p>
                     <p> {{ content }} </p>
                 </div>
-
                 {{!-- Collapse de reponse message --}}
                 <div class="accordion" id="accordionResponseMessage">
-
                     <div class="card">
                         <div class="card-header" id="headingReponseMessage">
                             <h2 class="mb-0">
@@ -30,7 +28,6 @@
                                 </button>
                             </h2>
                         </div>
-
                         <div id="collapseResponseMessage" class="collapse" aria-labelledby="headingReponseMessage"
                             data-parent="#accordionResponseMessage">
                             <div class="card-body">
@@ -39,10 +36,6 @@
                                         <label for="destinataire-name" class="col-form-label">Destinataire</label>
                                         <input type="text" class="form-control" name="mail" id="destinataire-name"
                                             value='{{ mail }}'>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="titre-name" class="col-form-label">Titre</label>
-                                        <input type="text" class="form-control" name="title" id="recipient-name">
                                     </div>
                                     <div class="form-group">
                                         <label for="object-text" class="col-form-label">Objet du message</label>
@@ -57,7 +50,6 @@
                                             data-dismiss="modal">Fermer</button>
                                         <button type="submit" class="btn btn-primary">Répondre</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
